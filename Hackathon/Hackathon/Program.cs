@@ -89,8 +89,6 @@ namespace Hackathon
                 try
                 {
                     string text = ApiClient.Convert(currentFile);
-                    if (text.Contains("what"))
-                        Console.WriteLine("stop");
                     List<string> termsFound = Parser.Parse(text, directory.FullName);
                     foreach (string term in termsFound)
                     {
@@ -102,7 +100,7 @@ namespace Hackathon
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    //Console.WriteLine(e.Message);
                 }
                 finally
                 {
