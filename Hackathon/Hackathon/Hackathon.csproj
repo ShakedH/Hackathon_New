@@ -67,7 +67,6 @@
     <Compile Include="APIClient.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Term.cs" />
     <Compile Include="TimeInVid.cs" />
     <Compile Include="VideoToWavConverter.cs" />
     <Compile Include="VideoWindow.xaml.cs">
