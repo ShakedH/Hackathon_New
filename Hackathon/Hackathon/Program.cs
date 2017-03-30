@@ -58,10 +58,10 @@ namespace Hackathon
                 string currentFile = directory.FullName + "\\" + OutputFilesFormat.Replace("*", (i + 1).ToString());
                 string text = ApiClient.Convert(currentFile);
                 // Process text to termsFound
-                // termsFound = Parser.parse(text);
-                List<Term> termsFound = new List<Term>();
-                foreach (Term term in termsFound)
+                List<string> termsFound = Parser.Parse(text);
+                foreach (string termVal in termsFound)
                 {
+                    Term term = new Term(termVal);
                     if (!termsToReturn.ContainsKey(term))
                         termsToReturn.Add(term, new List<TimeInVid>());
                     termsToReturn[term].Add(new TimeInVid(start, end));
