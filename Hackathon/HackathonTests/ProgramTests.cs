@@ -15,12 +15,12 @@ namespace Hackathon.Tests
         string videoFile = @"C:\Users\user\Desktop\Hack\20min.mp4";
         string binaryFile = @"C:\Users\user\Desktop\Hack\20min.bin";
         Stopwatch sw = new Stopwatch();
+        Program program = new Program(new APIClient());
 
         [TestMethod()]
         public void ConvertVideoTest()
         {
             sw.Restart();
-            Program program = new Program(new APIClient());
             try
             {
                 Dictionary<string, List<TimeInVid>> terms = program.ConvertVideo(videoFile);
@@ -55,12 +55,12 @@ namespace Hackathon.Tests
             Assert.IsTrue(true);
         }
 
+
         [TestMethod()]
-        public void Test1()
+        public void TestMostFrequent()
         {
-            APIClient client = new APIClient();
-            string text = client.Convert(@"C:\Users\user\Desktop\Hack\OutPut47.wav");
-            Console.WriteLine(text);
+            program.LoadFromFile(binaryFile);
+            Dictionary<string, List<TimeInVid>> max = program.GetMostFrequentStrings(5);
         }
     }
 }
