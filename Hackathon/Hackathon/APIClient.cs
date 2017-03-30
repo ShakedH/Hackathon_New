@@ -21,16 +21,24 @@ namespace Hackathon
     {
 
         private const string URL = "https://speech.platform.bing.com/recognize";
-        private const string AuthenticationKey = "983ad0ecbb4d40db8bf6fac8c88022d0";
+        private const string AuthenticationKey1 = "983ad0ecbb4d40db8bf6fac8c88022d0";
+        private const string AuthenticationKey2 = "89d52a07c0cb45a9ac03a719fe2f6950";
 
-        public string Convert(string FilePath)
+
+        public string Convert(string FilePath, bool firstKey = true)
         {
             if (!File.Exists(FilePath))
                 throw new ArgumentException(string.Format("File {0} not found", FilePath));
 
             // Note: Sign up at http://www.projectoxford.ai to get a subscription key.  Search for Speech APIs from Azure Marketplace.  
             // Use the subscription key as Client secret below.
-            Authentication auth = new Authentication(AuthenticationKey);
+            Authentication auth;
+            if (firstKey)
+                auth = new Authentication(AuthenticationKey1);
+            else
+                auth = new Authentication(AuthenticationKey2);
+
+
 
             string requestUri = URL.Trim(new char[] { '/', '?' });
 

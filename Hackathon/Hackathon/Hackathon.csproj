@@ -61,6 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="APIClient.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Term.cs" />
     <Compile Include="VideoToWavConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
