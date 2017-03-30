@@ -31,6 +31,7 @@ namespace Hackathon
 
         public Term(string term)
         {
+            Value = term;
             m_occurences = new List<TimeInVid>();
         }
 
@@ -39,5 +40,6 @@ namespace Hackathon
             TimeInVid timeOccured = new TimeInVid(start, end);
             Occurences.Add(timeOccured);
         }
+
     }
 }

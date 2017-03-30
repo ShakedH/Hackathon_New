@@ -16,28 +16,34 @@ namespace Hackathon
 
         private const int TimeIntervals = 15;
 
-        private const string OutputFilesFormat = "output*.txt";
+        private const string OutputFilesFormat = "OutPut*.wav";
 
-        private Dictionary<Term, List<TimeInVid>> m_terms;
+        private Dictionary<string, List<TimeInVid>> m_terms = new Dictionary<string, List<TimeInVid>>();
 
-        public Dictionary<Term, List<TimeInVid>> Terms
+        public Dictionary<string, List<TimeInVid>> Terms
         {
             get { return m_terms; }
             set { m_terms = value; }
         }
 
-        public Program(APIClient client, VideoToWavConverter converter)
+        private int m_FilesParsed;
+
+        public int FilesParsed
         {
-            this.ApiClient = client;
-            this.VidToSoundConverter = converter;
+            get { return m_FilesParsed; }
+            set { m_FilesParsed = value; }
         }
 
-        public Dictionary<Term, List<TimeInVid>> ConvertVideo(string filePath)
+        public Program(APIClient client)
         {
-            Dictionary<Term, List<TimeInVid>> termsToReturn = new Dictionary<Term, List<TimeInVid>>();
+            this.ApiClient = client;
+        }
+
+        public Dictionary<string, List<TimeInVid>> ConvertVideo(string filePath)
+        {
             if (!File.Exists(filePath))
                 throw new ArgumentException(string.Format("File {0} not found!", filePath));
-
+            VidToSoundConverter = new VideoToWavConverter(filePath, Path.GetDirectoryName(filePath));
 
             // Convert video to audio:
             VidToSoundConverter.Convert();
@@ -51,27 +57,41 @@ namespace Hackathon
             TimeSpan toAddSpan = new TimeSpan(0, 0, TimeIntervals);
             TimeSpan start = new TimeSpan(0, 0, 0);
             TimeSpan end = start.Add(toAddSpan);
-
-            for (int i = 0; i < taskFiles.Length; i++)
+            FilesParsed = 0;
+            for (int i = 0; i < FilesParsed; i++)
             {
-                // find file #(i+1):
-                string currentFile = directory.FullName + "\\" + OutputFilesFormat.Replace("*", (i + 1).ToString());
-                string text = ApiClient.Convert(currentFile);
-                // Process text to termsFound
-                List<string> termsFound = Parser.Parse(text);
-                foreach (string termVal in termsFound)
-                {
-                    Term term = new Term(termVal);
-                    if (!termsToReturn.ContainsKey(term))
-                        termsToReturn.Add(term, new List<TimeInVid>());
-                    termsToReturn[term].Add(new TimeInVid(start, end));
-                }
                 start = end;
                 end = start.Add(toAddSpan);
             }
+            for (int i = FilesParsed; i < taskFiles.Length; i++)
+            {
+                // find file #(i+1):
+                string currentFile = directory.FullName + "\\" + OutputFilesFormat.Replace("*", (i + 1).ToString());
+                try
+                {
+                    string text = ApiClient.Convert(currentFile);
+                    List<string> termsFound = Parser.Parse(text, directory.FullName);
+                    foreach (string term in termsFound)
+                    {
 
-            Terms = termsToReturn;
-            return termsToReturn;
+                        if (!Terms.ContainsKey(term))
+                            Terms.Add(term, new List<TimeInVid>());
+                        Terms[term].Add(new TimeInVid(start, end));
+                    }
+                }
+                catch (Exception e)
+                {
+                    string msg = e.Message;
+                }
+                finally
+                {
+                    FilesParsed++;
+                    start = end;
+                    end = start.Add(toAddSpan);
+                }
+            }
+
+            return Terms;
         }
 
         public void SaveToFile(string filePath)
@@ -88,7 +108,7 @@ namespace Hackathon
             using (FileStream stream = File.Open(filePath, FileMode.Open))
             {
                 BinaryFormatter reader = new BinaryFormatter();
-                Terms = (Dictionary<Term, List<TimeInVid>>)reader.Deserialize(stream);
+                Terms = (Dictionary<string, List<TimeInVid>>)reader.Deserialize(stream);
             }
         }
     }

@@ -131,9 +131,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="stop-word-list.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

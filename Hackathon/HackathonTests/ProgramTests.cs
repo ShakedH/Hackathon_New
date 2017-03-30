@@ -5,29 +5,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Hackathon.Tests
 {
     [TestClass()]
     public class ProgramTests
     {
+        string videoFile = @"C:\Users\user\Desktop\Hack\20min.mp4";
+        string binaryFile = @"C:\Users\user\Desktop\Hack\20min.bin";
+        Stopwatch sw = new Stopwatch();
+
         [TestMethod()]
         public void ConvertVideoTest()
         {
-            string videoFile = @"C:\Users\user\Desktop\Hack\1.mp4";
-            string audioFile = @"C:\Users\user\Desktop\Hack\1.wav";
-            string binaryFile = @"C:\Users\user\Desktop\Hack\1.bin";
-            Program program = new Program(new APIClient(), new VideoToWavConverter(videoFile, audioFile));
+            sw.Restart();
+            Program program = new Program(new APIClient());
             try
             {
-                Dictionary<Term, List<TimeInVid>> terms = program.ConvertVideo(audioFile);
+                Dictionary<string, List<TimeInVid>> terms = program.ConvertVideo(videoFile);
                 program.SaveToFile(binaryFile);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                program.SaveToFile(binaryFile);
+                Console.WriteLine("Parsed {0} files", program.FilesParsed);
+                Assert.Fail();
+            }
+            sw.Stop();
+            Console.WriteLine("Finished in {0} seconds", sw.Elapsed.TotalSeconds);
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod()]
+        public void TestLoad()
+        {
+            Program program = new Program(new APIClient());
+            try
+            {
+                program.LoadFromFile(binaryFile);
+                Dictionary<string, List<TimeInVid>> dic = program.Terms;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Assert.Fail();
             }
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod()]
+        public void Test1()
+        {
+            APIClient client = new APIClient();
+            string text = client.Convert(@"C:\Users\user\Desktop\Hack\OutPut47.wav");
+            Console.WriteLine(text);
         }
     }
 }
