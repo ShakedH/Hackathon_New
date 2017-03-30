@@ -20,9 +20,14 @@ namespace Hackathon
     /// </summary>
     public partial class VideoWindow : Window
     {
+        private const string _defaultText = "Search in the video...";
+
         public VideoWindow()
         {
             InitializeComponent();
+            searchBox.Foreground = Brushes.LightSlateGray;
+            searchBox.Text = _defaultText;
+            searchBox.VerticalContentAlignment = VerticalAlignment.Center;
         }
 
         private DispatcherTimer timerVideoTime;
@@ -113,7 +118,17 @@ namespace Hackathon
 
         private void searchBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
+            searchBox.Foreground = Brushes.Black;
+            if (searchBox.Text == _defaultText)
+                searchBox.Text = string.Empty;
+        }
 
+        private void searchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+            }
         }
     }
 }

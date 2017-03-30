@@ -151,8 +151,9 @@
                      Grid.Column="6"
                      Grid.Row="1"
                      Grid.ColumnSpan="4"
-                     FontSize="22"
-                     PreviewMouseDown="searchBox_PreviewMouseDown">
+                     FontSize="18"
+                     PreviewMouseDown="searchBox_PreviewMouseDown"
+                     KeyDown="searchBox_KeyDown">
                 <TextBox.Effect>
                     <DropShadowEffect ShadowDepth="5"
                                       Color="Gray"
@@ -160,6 +161,41 @@
                                       RenderingBias="Performance" />
                 </TextBox.Effect>
             </TextBox>
+            <TextBlock Name="txtSearchResults"
+                       Grid.Column="6"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="4"
+                       Grid.RowSpan="7"
+                       Margin="0,10,0,0" />
+            <TextBlock Name="txtDescription"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="5"
+                       Grid.RowSpan="5"
+                       TextWrapping="Wrap"
+                       FontSize="18">
+                <Bold>Faculty: </Bold>
+                Engineering
+                <LineBreak />
+                <Bold>Department: </Bold>
+                Communication Engineering
+                <LineBreak />
+                <Bold>Course: </Bold>
+                Communication 101
+                <LineBreak />
+                <Bold>Lecturer: </Bold>
+                Prof. Guy Lerer
+                <LineBreak />
+                <Bold>Lecture: </Bold>
+                2
+                <LineBreak />
+                <Bold>Tags: </Bold>
+            </TextBlock>
+            <TextBlock Name="txtTags"
+                       Grid.Row="6"
+                       Grid.ColumnSpan="5"
+                       Grid.RowSpan="2"
+                       FontSize="18"
+                       TextWrapping="Wrap" />
         </Grid>
     </Grid>
 </Window>
