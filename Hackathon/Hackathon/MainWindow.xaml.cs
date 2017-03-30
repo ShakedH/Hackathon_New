@@ -20,14 +20,24 @@ namespace Hackathon
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string _defaultText = "Search in our videos...";
         public MainWindow()
         {
             InitializeComponent();
+            //SearchScreen.Visibility = Visibility.Visible;
+            //ResultsScreen.Visibility = Visibility.Hidden;
+            SearchScreen.Visibility = Visibility.Hidden;
+            ResultsScreen.Visibility = Visibility.Visible;
+            searchBox.Foreground = Brushes.LightSlateGray;
+            searchBox.Text = _defaultText;
+            searchBox.VerticalContentAlignment = VerticalAlignment.Center;
         }
 
-        private void PlayButtonClick(object sender, RoutedEventArgs e)
+        private void searchBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            searchBox.Foreground = Brushes.Black;
+            if (searchBox.Text == _defaultText)
+                searchBox.Text = string.Empty;
         }
     }
 }

@@ -91,10 +91,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\Crystal_Project_pause-queue.png" />
+    <Resource Include="Images\Crystal_Project_Player_play.png" />
+    <Resource Include="Images\Crystal_Project_Player_stop.png" />
+    <Resource Include="Images\Next.png" />
+    <Resource Include="Images\Previous.png" />
+    <Resource Include="Images\restart-png-image-18282.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Fonts\Revalia-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
