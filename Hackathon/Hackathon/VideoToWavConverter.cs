@@ -27,10 +27,10 @@ namespace Hackathon
 
         public void Convert()
         {
-            //using (StreamWriter sw = new StreamWriter("executeConversion.bat"))
-            //{
-            //    string 
-            //}
+            throw new NotImplementedException();
+            using (StreamWriter sw = new StreamWriter("executeConversion.bat"))
+            {
+            }
         }
     }
 }
