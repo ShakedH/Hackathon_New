@@ -24,5 +24,10 @@ namespace Hackathon
         {
             InitializeComponent();
         }
+
+        private void PlayButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
