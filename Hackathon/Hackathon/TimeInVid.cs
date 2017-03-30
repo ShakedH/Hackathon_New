@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hackathon
 {
+    [Serializable]
     public class TimeInVid
     {
         private TimeSpan m_start;

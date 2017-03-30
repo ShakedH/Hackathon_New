@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Hackathon
 {
+    [Serializable]
     public class Term
     {
         private string m_value;
@@ -13,29 +14,30 @@ namespace Hackathon
             set { m_value = value; }
         }
 
-        private Dictionary<Lecture, List<TimeInVid>> m_occurences;
+        private List<TimeInVid> m_occurences;
 
-        public Dictionary<Lecture, List<TimeInVid>> Occurences
+        public List<TimeInVid> Occurences
         {
             get { return m_occurences; }
             private set { m_occurences = value; }
         }
 
-        public Term(string term)
+        public int getNumOfOccurences()
         {
-            m_occurences = new Dictionary<Lecture, List<TimeInVid>>();
+            if (Occurences == null)
+                return 0;
+            return Occurences.Capacity;
         }
 
-        public void AddOccurence(Lecture lecture, TimeSpan start, TimeSpan end)
+        public Term(string term)
+        {
+            m_occurences = new List<TimeInVid>();
+        }
+
+        public void AddOccurence(TimeSpan start, TimeSpan end)
         {
             TimeInVid timeOccured = new TimeInVid(start, end);
-
-            if (!Occurences.ContainsKey(lecture))
-                Occurences.Add(lecture, new List<TimeInVid>());
-
-            if (!Occurences[lecture].Contains(timeOccured))
-                Occurences[lecture].Add(timeOccured);
-
+            Occurences.Add(timeOccured);
         }
     }
 }
