@@ -133,10 +133,11 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Text="Select Faculty:"
-                       Grid.Column="0" 
+                       Grid.Column="0"
                        Grid.ColumnSpan="2"
-                       FontSize="14"/>
-            <ComboBox Grid.Column="0"
+                       FontSize="14" />
+            <ComboBox Name="facComboBox"
+                      Grid.Column="0"
                       Grid.Row="1"
                       Grid.ColumnSpan="2"
                       FontSize="14">
@@ -147,7 +148,7 @@
             <TextBlock Text="Select Department:"
                        Grid.Column="3"
                        Grid.ColumnSpan="2"
-                       FontSize="14"/>
+                       FontSize="14" />
             <ComboBox Grid.Column="3"
                       Grid.Row="1"
                       Grid.ColumnSpan="2"
@@ -183,5 +184,13 @@
                 <ComboBoxItem>Prof. Reuven Hai</ComboBoxItem>
             </ComboBox>
         </Grid>
+        <Image Name="ResultsPic"
+               Visibility="Hidden"
+               Source="/Images/1.png"
+               Grid.Column="6"
+               Grid.Row="12"
+               Grid.ColumnSpan="8"
+               Grid.RowSpan="7"
+               MouseLeftButtonDown="Pic_Click"/>
     </Grid>
 </Window>
