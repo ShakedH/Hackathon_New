@@ -31,7 +31,6 @@ namespace Hackathon
             using (StreamWriter sw = new StreamWriter("executeConversion.bat"))
             {
             }
-            //
         }
     }
 }
