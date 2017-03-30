@@ -12,6 +12,7 @@ namespace Hackathon
 
         private VideoToWavConverter VidToSoundConverter;
 
+
         public Program(APIClient client, VideoToWavConverter converter)
         {
             this.ApiClient = client;
@@ -22,6 +23,7 @@ namespace Hackathon
         {
             // Convert video to audio:
             VidToSoundConverter.Convert();
+            string fullAudioPath = VidToSoundConverter.OutputFullPath;
             List<string> fileNames;
             /*
                 Split audioFile by 15 seconds. Save to fileNames
