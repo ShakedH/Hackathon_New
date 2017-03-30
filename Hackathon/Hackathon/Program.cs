@@ -22,7 +22,6 @@ namespace Hackathon
         {
             // Convert video to audio:
             VidToSoundConverter.Convert();
-            string audioFile = VidToSoundConverter.OutputFileName;
             List<string> fileNames;
             /*
                 Split audioFile by 15 seconds. Save to fileNames

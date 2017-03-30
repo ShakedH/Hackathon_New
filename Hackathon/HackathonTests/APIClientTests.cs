@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Hackathon.Tests
 {
@@ -15,7 +16,7 @@ namespace Hackathon.Tests
         [TestMethod()]
         public void ShortConversionWithTags()
         {
-            string file = @"C:\Users\user\Desktop\Hack\s3.wav";
+            string file = @"C:\Users\user\Desktop\Hack\short3.wav";
             string response = "";
             try
             {
@@ -69,12 +70,12 @@ namespace Hackathon.Tests
         }
 
         [TestMethod()]
-        public void TestMultipleRequestsPerMinutes()
+        public void TestMultipleRequestsPerMinutesThreaded()
         {
             APIClient client = new APIClient();
             List<Thread> threads = new List<Thread>();
             string file = @"C:\Users\user\Desktop\Hack\s3.wav";
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Thread t = new Thread(() =>
                 {
@@ -101,6 +102,40 @@ namespace Hackathon.Tests
                 threadsFinished++;
             }
             Console.WriteLine("Threads Finished: " + threadsFinished);
+
+        }
+
+        [TestMethod()]
+        public void TestMultipleRequestsPerMinutesNotThreaded()
+        {
+            Stopwatch sw = new Stopwatch();
+            APIClient client = new APIClient();
+            string fileStart = @"C:\Users\user\Desktop\Hack\";
+            sw.Start();
+            int i;
+            for (i = 0; i < 3; i++)
+            {
+
+                string file = fileStart + "test_Lectur" + (i + 1) + ".wav";
+                try
+                {
+                    int j = i;
+                    string response = client.Convert(file, i < 20);
+                    using (System.IO.StreamWriter outFile =
+          new System.IO.StreamWriter(fileStart + i + ".txt"))
+                    {
+                        outFile.Write(response);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Assert.Fail();
+                }
+            }
+            sw.Stop();
+            string time = sw.Elapsed.TotalSeconds.ToString();
+            Console.WriteLine(string.Format("converted {0} requests in {1} seconds", i, time));
 
         }
     }
