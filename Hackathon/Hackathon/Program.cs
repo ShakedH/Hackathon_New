@@ -40,6 +40,15 @@ namespace Hackathon
                    .ToDictionary(pair => pair.Key, pair => pair.Value).Take(numOfResults).ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
+        public List<TimeInVid> SearchWord(string term)
+        {
+            term = term.ToLower();
+            if (Terms.ContainsKey(term))
+                return Terms[term];
+            else
+                return null;
+        }
+
         public Program(APIClient client)
         {
             this.ApiClient = client;
@@ -80,6 +89,8 @@ namespace Hackathon
                 try
                 {
                     string text = ApiClient.Convert(currentFile);
+                    if (text.Contains("what"))
+                        Console.WriteLine("stop");
                     List<string> termsFound = Parser.Parse(text, directory.FullName);
                     foreach (string term in termsFound)
                     {
@@ -89,9 +100,9 @@ namespace Hackathon
                         Terms[term].Add(new TimeInVid(start, end));
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-
+                    Console.WriteLine(e.Message);
                 }
                 finally
                 {

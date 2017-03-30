@@ -60,7 +60,14 @@ namespace Hackathon.Tests
         public void TestMostFrequent()
         {
             program.LoadFromFile(binaryFile);
-            Dictionary<string, List<TimeInVid>> max = program.GetMostFrequentStrings(5);
+            Dictionary<string, List<TimeInVid>> max = program.GetMostFrequentStrings(30);
+        }
+
+        [TestMethod()]
+        public void TestGet()
+        {
+            program.LoadFromFile(binaryFile);
+            List<TimeInVid> times = program.SearchWord("layer");
         }
     }
 }
