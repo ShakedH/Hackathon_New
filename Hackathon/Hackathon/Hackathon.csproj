@@ -65,7 +65,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="APIClient.cs" />
-    <Compile Include="Lecture.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Term.cs" />
     <Compile Include="TimeInVid.cs" />
