@@ -51,11 +51,11 @@ namespace Hackathon
             return wf.TotalTime;
         }
 
-        public static void Split(double myIntervalInSec, string fileName)
+        public static void Split(double myIntervalInSec, string path)
         {
 
             double interval = myIntervalInSec;
-            TimeSpan totalDuration = WavSplitter.GetWavFileDuration(fileName + ".wav");
+            TimeSpan totalDuration = WavSplitter.GetWavFileDuration(path);
             double a = totalDuration.TotalSeconds;
             double timeFromEnd = (totalDuration.TotalSeconds - interval);
             double timeFromStart = 0;
@@ -64,7 +64,7 @@ namespace Hackathon
             int i = 1;
             while (end.TotalSeconds > 0)
             {
-                WavSplitter.TrimWavFile(fileName + ".wav", fileName + "OutPut" + i + ".wav", start, end);
+                WavSplitter.TrimWavFile(path, "OutPut" + i + ".wav", start, end);
                 timeFromEnd -= interval;
                 timeFromStart += interval;
                 end = TimeSpan.FromSeconds(timeFromEnd);
