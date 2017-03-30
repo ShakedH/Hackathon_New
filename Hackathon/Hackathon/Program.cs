@@ -54,6 +54,9 @@ namespace Hackathon
             this.ApiClient = client;
         }
 
+        /// <summary>
+        /// Make Sure stopWordsFile is in the same place as file!
+        /// </summary>
         public Dictionary<string, List<TimeInVid>> ConvertVideo(string filePath, int filesParsed = 0)
         {
             this.FilesParsed = filesParsed;
