@@ -1,5 +1,6 @@
 ﻿using NAudio.Wave;
 using System;
+using System.IO;
 
 namespace Hackathon
 {
@@ -53,7 +54,7 @@ namespace Hackathon
 
         public static void Split(double myIntervalInSec, string path)
         {
-
+            string directory = Path.GetDirectoryName(path) + @"\";
             double interval = myIntervalInSec;
             TimeSpan totalDuration = WavSplitter.GetWavFileDuration(path);
             double a = totalDuration.TotalSeconds;
@@ -64,7 +65,7 @@ namespace Hackathon
             int i = 1;
             while (end.TotalSeconds > 0)
             {
-                WavSplitter.TrimWavFile(path, "OutPut" + i + ".wav", start, end);
+                WavSplitter.TrimWavFile(path, directory + "OutPut" + i + ".wav", start, end);
                 timeFromEnd -= interval;
                 timeFromStart += interval;
                 end = TimeSpan.FromSeconds(timeFromEnd);

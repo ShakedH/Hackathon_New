@@ -51,11 +51,9 @@ namespace Hackathon
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
-            MessageBox.Show(string.Format("Converting video file {0} to audio file", VideoFilePath));
             string output = p.StandardOutput.ReadToEnd();
             p.WaitForExit();
             File.Delete(batchFileName);
-            MessageBox.Show(string.Format("Conversion finished!\nFile is saved at: {0}", OutputFullPath));
         }
     }
 }
