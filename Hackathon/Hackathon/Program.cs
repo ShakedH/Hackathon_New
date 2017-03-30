@@ -34,13 +34,32 @@ namespace Hackathon
             set { m_FilesParsed = value; }
         }
 
+        public Dictionary<string, List<TimeInVid>> GetMostFrequentStrings(int numOfResults)
+        {
+            return (from entry in Terms orderby entry.Value.Capacity descending select entry)
+                   .ToDictionary(pair => pair.Key, pair => pair.Value).Take(numOfResults).ToDictionary(pair => pair.Key, pair => pair.Value);
+        }
+
+        public List<TimeInVid> SearchWord(string term)
+        {
+            term = term.ToLower();
+            if (Terms.ContainsKey(term))
+                return Terms[term];
+            else
+                return null;
+        }
+
         public Program(APIClient client)
         {
             this.ApiClient = client;
         }
 
-        public Dictionary<string, List<TimeInVid>> ConvertVideo(string filePath)
+        public Dictionary<string, List<TimeInVid>> ConvertVideo(string filePath, int filesParsed = 0)
         {
+            this.FilesParsed = filesParsed;
+            if (FilesParsed > 0)
+                LoadFromFile(filePath.Replace(".mp4", ".bin"));
+
             if (!File.Exists(filePath))
                 throw new ArgumentException(string.Format("File {0} not found!", filePath));
             VidToSoundConverter = new VideoToWavConverter(filePath, Path.GetDirectoryName(filePath));
@@ -57,7 +76,7 @@ namespace Hackathon
             TimeSpan toAddSpan = new TimeSpan(0, 0, TimeIntervals);
             TimeSpan start = new TimeSpan(0, 0, 0);
             TimeSpan end = start.Add(toAddSpan);
-            FilesParsed = 0;
+
             for (int i = 0; i < FilesParsed; i++)
             {
                 start = end;
@@ -81,7 +100,7 @@ namespace Hackathon
                 }
                 catch (Exception e)
                 {
-                    string msg = e.Message;
+                    //Console.WriteLine(e.Message);
                 }
                 finally
                 {
