@@ -54,12 +54,12 @@
         </Grid.RowDefinitions>
         <Image Source="/Images/Logo.png"
                Grid.Column="7"
-               Grid.Row="6"
+               Grid.Row="4"
                Grid.ColumnSpan="2"
                Grid.RowSpan="2" />
         <TextBlock Text="Search-VD"
                    Grid.Column="9"
-                   Grid.Row="6"
+                   Grid.Row="4"
                    Grid.RowSpan="2"
                    Grid.ColumnSpan="6"
                    VerticalAlignment="Center"
@@ -67,10 +67,11 @@
                    FontFamily="/Hackathon;component/Fonts/#Revalia" />
         <TextBox Name="searchBox"
                  Grid.Column="5"
-                 Grid.Row="9"
+                 Grid.Row="7"
                  Grid.ColumnSpan="10"
                  FontSize="22"
-                 PreviewMouseDown="searchBox_PreviewMouseDown">
+                 PreviewMouseDown="searchBox_PreviewMouseDown"
+                 KeyDown="searchBox_KeyDown">
             <TextBox.Effect>
                 <DropShadowEffect ShadowDepth="5"
                                   Color="Gray"
@@ -78,20 +79,13 @@
                                   RenderingBias="Performance" />
             </TextBox.Effect>
         </TextBox>
-        <TextBlock Text="Advanced Search"
-                   Grid.Column="12"
-                   Grid.Row="10"
-                   Grid.ColumnSpan="3"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Right"
-                   FontSize="16"
-                   TextDecorations="Underline" />
         <Button Content="Search"
                 Grid.Column="15"
-                Grid.Row="9"
+                Grid.Row="7"
                 Grid.ColumnSpan="2"
                 HorizontalAlignment="Center"
-                Click="searchBtn_Click">
+                Click="searchBtn_Click"
+                Padding="10">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="5"
                                   Color="Gray"
@@ -99,5 +93,95 @@
                                   RenderingBias="Performance" />
             </Button.Effect>
         </Button>
+        <TextBlock Text="Advanced Search"
+                   Grid.Column="12"
+                   Grid.Row="8"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="16"
+                   TextDecorations="Underline"
+                   MouseLeftButtonDown="advSearch_Click" />
+        <Grid Name="advSearchGrid"
+              Grid.Column="3"
+              Grid.Row="10"
+              Grid.ColumnSpan="14"
+              Grid.RowSpan="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Select Faculty:"
+                       Grid.Column="0" 
+                       Grid.ColumnSpan="2"
+                       FontSize="14"/>
+            <ComboBox Grid.Column="0"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      FontSize="14">
+                <ComboBoxItem>Engineering Sciences</ComboBoxItem>
+                <ComboBoxItem>Health Sciences</ComboBoxItem>
+                <ComboBoxItem>Natural Sciences</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Select Department:"
+                       Grid.Column="3"
+                       Grid.ColumnSpan="2"
+                       FontSize="14"/>
+            <ComboBox Grid.Column="3"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      FontSize="14">
+                <ComboBoxItem>Communication Engineering</ComboBoxItem>
+                <ComboBoxItem>Electrical Engineering</ComboBoxItem>
+                <ComboBoxItem>IS Engineering</ComboBoxItem>
+                <ComboBoxItem>Mechanical Engineering</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Select Course:"
+                       Grid.Column="6"
+                       Grid.ColumnSpan="2"
+                       FontSize="14" />
+            <ComboBox Grid.Column="6"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      FontSize="14">
+                <ComboBoxItem>Communication 101</ComboBoxItem>
+                <ComboBoxItem>Signal Processing</ComboBoxItem>
+                <ComboBoxItem>Calculus I</ComboBoxItem>
+                <ComboBoxItem>Calculus II</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Select Lecturer:"
+                       Grid.Column="9"
+                       Grid.ColumnSpan="2"
+                       FontSize="14" />
+            <ComboBox Grid.Column="9"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      FontSize="14">
+                <ComboBoxItem>Prof. Guy Lerer</ComboBoxItem>
+                <ComboBoxItem>Dr. Dan Shpitz</ComboBoxItem>
+                <ComboBoxItem>Prof. Reuven Hai</ComboBoxItem>
+            </ComboBox>
+        </Grid>
     </Grid>
 </Window>

@@ -42,5 +42,16 @@ namespace Hackathon
         {
             new VideoWindow().Show();
         }
+
+        private void searchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                searchBtn_Click(sender, null);
+        }
+
+        private void advSearch_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
