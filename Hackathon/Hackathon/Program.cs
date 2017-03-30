@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Hackathon
@@ -34,6 +35,22 @@ namespace Hackathon
             set { m_FilesParsed = value; }
         }
 
+        private Dictionary<TermTimeKey, string> m_Sentences = new Dictionary<TermTimeKey, string>();
+
+        public Dictionary<TermTimeKey, string> Sentences
+        {
+            get { return m_Sentences; }
+            private set { m_Sentences = value; }
+        }
+
+
+
+
+        public Program(APIClient client)
+        {
+            this.ApiClient = client;
+        }
+
         public Dictionary<string, List<TimeInVid>> GetMostFrequentStrings(int numOfResults)
         {
             return (from entry in Terms orderby entry.Value.Capacity descending select entry)
@@ -47,11 +64,6 @@ namespace Hackathon
                 return Terms[term];
             else
                 return null;
-        }
-
-        public Program(APIClient client)
-        {
-            this.ApiClient = client;
         }
 
         /// <summary>
@@ -95,10 +107,15 @@ namespace Hackathon
                     List<string> termsFound = Parser.Parse(text, directory.FullName);
                     foreach (string term in termsFound)
                     {
-
                         if (!Terms.ContainsKey(term))
                             Terms.Add(term, new List<TimeInVid>());
-                        Terms[term].Add(new TimeInVid(start, end));
+
+                        TimeInVid time = new TimeInVid(start, end);
+                        Terms[term].Add(time);
+
+                        MatchCollection matches = Regex.Matches(text, @"(?:\S+\s)?\S*(?:\S+\s)?\S*" + term + @"\S*(?:\s\S+)?\S*(?:\s\S+)?", RegexOptions.IgnoreCase);
+                        string sentence = matches[0].Value;
+                        Sentences.Add(new TermTimeKey(term, time), sentence);
                     }
                 }
                 catch (Exception e)
@@ -116,22 +133,91 @@ namespace Hackathon
             return Terms;
         }
 
-        public void SaveToFile(string filePath)
+        public void SaveToFile(string Directory)
         {
-            using (FileStream stream = File.Open(filePath, FileMode.Create))
+            string TermsFilePath = Directory + @"\Terms.bin";
+            using (FileStream stream = File.Open(TermsFilePath, FileMode.Create))
             {
                 BinaryFormatter writer = new BinaryFormatter();
                 writer.Serialize(stream, Terms);
             }
+
+            string SentencesFilePath = Directory + @"\Sentences.bin";
+            using (FileStream stream = File.Open(SentencesFilePath, FileMode.Create))
+            {
+                BinaryFormatter writer = new BinaryFormatter();
+                writer.Serialize(stream, Sentences);
+            }
         }
 
-        public void LoadFromFile(string filePath)
+        public void LoadFromFile(string Directory)
         {
-            using (FileStream stream = File.Open(filePath, FileMode.Open))
+            string TermsFilePath = Directory + @"\Terms.bin";
+            using (FileStream stream = File.Open(TermsFilePath, FileMode.Open))
             {
                 BinaryFormatter reader = new BinaryFormatter();
                 Terms = (Dictionary<string, List<TimeInVid>>)reader.Deserialize(stream);
             }
+
+            string SentencesFilePath = Directory + @"\Sentences.bin";
+            using (FileStream stream = File.Open(SentencesFilePath, FileMode.Open))
+            {
+                BinaryFormatter reader = new BinaryFormatter();
+                Sentences = (Dictionary<TermTimeKey, string>)reader.Deserialize(stream);
+            }
         }
     }
+
+    [Serializable]
+    public class TermTimeKey
+    {
+        private string m_term;
+
+        public string Term
+        {
+            get { return m_term; }
+            set { m_term = value; }
+        }
+
+        private TimeInVid m_time;
+
+        public TimeInVid Time
+        {
+            get { return m_time; }
+            set { m_time = value; }
+        }
+
+        public TermTimeKey(string term, TimeInVid time)
+        {
+            Term = term;
+            Time = time;
+        }
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            //       
+            // See the full list of guidelines at
+            //   http://go.microsoft.com/fwlink/?LinkID=85237  
+            // and also the guidance for operator== at
+            //   http://go.microsoft.com/fwlink/?LinkId=85238
+            //
+
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            // TODO: write your implementation of Equals() here
+            TermTimeKey other = (TermTimeKey)obj;
+            return Term.Equals(other.Term) && Time.Equals(other.Time);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            // TODO: write your implementation of GetHashCode() here
+            return base.GetHashCode();
+        }
+    }
+
 }

@@ -12,10 +12,11 @@ namespace Hackathon
     {
         private static char[] delimeters = new char[] { '.', ' ', ',', '-' };
         private static string[] stopWords;
+        private static string stopWordsFileName = "stopWords.txt";
 
         public static List<string> Parse(string text, string stopWordsPathDirectory)
         {
-            string path = stopWordsPathDirectory + @"\stopWords.txt";
+            string path = stopWordsPathDirectory + @"\" + stopWordsFileName;
             if (stopWords == null)
                 GetStopWords(path);
             List<string> words = text.Split(delimeters).ToList<string>();

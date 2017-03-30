@@ -13,7 +13,7 @@ namespace Hackathon.Tests
     public class ProgramTests
     {
         string videoFile = @"C:\Users\user\Desktop\Hack\20min.mp4";
-        string binaryFile = @"C:\Users\user\Desktop\Hack\20min.bin";
+        string binaryDirectory = @"C:\Users\user\Desktop\Hack";
         Stopwatch sw = new Stopwatch();
         Program program = new Program(new APIClient());
 
@@ -24,12 +24,12 @@ namespace Hackathon.Tests
             try
             {
                 Dictionary<string, List<TimeInVid>> terms = program.ConvertVideo(videoFile);
-                program.SaveToFile(binaryFile);
+                program.SaveToFile(binaryDirectory);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                program.SaveToFile(binaryFile);
+                program.SaveToFile(binaryDirectory);
                 Console.WriteLine("Parsed {0} files", program.FilesParsed);
                 Assert.Fail();
             }
@@ -44,7 +44,7 @@ namespace Hackathon.Tests
             Program program = new Program(new APIClient());
             try
             {
-                program.LoadFromFile(binaryFile);
+                program.LoadFromFile(binaryDirectory);
                 Dictionary<string, List<TimeInVid>> dic = program.Terms;
             }
             catch (Exception e)
@@ -59,14 +59,14 @@ namespace Hackathon.Tests
         [TestMethod()]
         public void TestMostFrequent()
         {
-            program.LoadFromFile(binaryFile);
+            program.LoadFromFile(binaryDirectory);
             Dictionary<string, List<TimeInVid>> max = program.GetMostFrequentStrings(30);
         }
 
         [TestMethod()]
         public void TestGet()
         {
-            program.LoadFromFile(binaryFile);
+            program.LoadFromFile(binaryDirectory);
             List<TimeInVid> times = program.SearchWord("layer");
         }
     }
