@@ -43,6 +43,13 @@ namespace Hackathon
             private set { m_Sentences = value; }
         }
 
+        public string GetSentence(string term, TimeInVid time)
+        {
+            TermTimeKey key = new TermTimeKey(term, time);
+            if (Sentences.ContainsKey(key))
+                return Sentences[key];
+            return "";
+        }
 
 
 
