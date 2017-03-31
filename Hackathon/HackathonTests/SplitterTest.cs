@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 namespace Hackathon.Tests
 {
     [TestClass()]
@@ -29,16 +28,20 @@ namespace Hackathon.Tests
             }
             */
 
-            WavSplitter.Split(30, "test_Lecture");
+           // WavSplitter.Split(30, "test_Lecture");
 
 
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ArgumentException))]
-        public void FileNotExist()
+        public void convertAndSplit()
         {
 
+            string inputPath = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\Lecture.mp4";
+            string OutPutPath = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\";
+            VideoToWavConverter vdCconv = new VideoToWavConverter(inputPath, OutPutPath);
+            vdCconv.Convert();
+            WavSplitter.Split(30, "Lecture_audio.wav");
         }
 
 
