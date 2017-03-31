@@ -150,6 +150,8 @@ namespace Hackathon
 
         private void GenerateColumns()
         {
+            txtSearchResults.Columns.Clear();
+
             DataGridTextColumn col = new DataGridTextColumn();
             col.Header = "Time";
             col.Binding = new Binding("[0]");

@@ -68,8 +68,7 @@ namespace Hackathon
             term = term.ToLower();
             if (Terms.ContainsKey(term))
                 return Terms[term];
-            else
-                return null;
+            return new List<TimeInVid>();
         }
 
         /// <summary>
@@ -126,7 +125,7 @@ namespace Hackathon
                         Sentences[term].Add(time.Start, sentence);
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //Console.WriteLine(e.Message);
                 }
