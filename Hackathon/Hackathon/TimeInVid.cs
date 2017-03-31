@@ -30,5 +30,10 @@ namespace Hackathon
             this.Start = start;
             this.End = end;
         }
+
+        public override string ToString()
+        {
+            return Start.ToString();
+        }
     }
 }

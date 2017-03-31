@@ -21,6 +21,7 @@ namespace Hackathon
     public partial class VideoWindow : Window
     {
         private const string _defaultText = "Search in the video...";
+        Program p = new Program(new APIClient());
 
         public VideoWindow()
         {
@@ -28,6 +29,7 @@ namespace Hackathon
             searchBox.Foreground = Brushes.LightSlateGray;
             searchBox.Text = _defaultText;
             searchBox.VerticalContentAlignment = VerticalAlignment.Center;
+            p.LoadFromFile(Environment.CurrentDirectory);
         }
 
         private DispatcherTimer timerVideoTime;
@@ -126,9 +128,23 @@ namespace Hackathon
         private void searchBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
+                GetSearchResults();
+        }
 
+        private void GetSearchResults()
+        {
+            string term = searchBox.Text.ToLower();
+            List<TimeInVid> allTimes = p.SearchWord(term);
+            List<string[]> itemsSource = new List<string[]>();
+            foreach (TimeInVid tiv in allTimes)
+            {
+                string[] data = new string[2];
+                data[0] = tiv.ToString();
+                data[1] = p.GetSentence(term, tiv);
+                itemsSource.Add(data);
             }
+            txtSearchResults.Visibility = Visibility.Visible;
+            txtSearchResults.ItemsSource = itemsSource;
         }
     }
 }

@@ -119,10 +119,10 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Grid Grid.Column="5"
+        <Grid Grid.Column="4"
               Grid.Row="11"
               Grid.RowSpan="8"
-              Grid.ColumnSpan="10">
+              Grid.ColumnSpan="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -161,12 +161,19 @@
                                       RenderingBias="Performance" />
                 </TextBox.Effect>
             </TextBox>
-            <TextBlock Name="txtSearchResults"
-                       Grid.Column="6"
-                       Grid.Row="2"
-                       Grid.ColumnSpan="4"
-                       Grid.RowSpan="7"
-                       Margin="0,10,0,0" />
+            <DataGrid Name="txtSearchResults"
+                      Grid.Column="6"
+                      Grid.Row="2"
+                      Grid.ColumnSpan="4"
+                      Grid.RowSpan="7"
+                      Margin="0,10,0,0"
+                      Visibility="Hidden"
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Time" />
+                    <DataGridTextColumn Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
             <TextBlock Name="txtDescription"
                        Grid.Row="1"
                        Grid.ColumnSpan="5"
