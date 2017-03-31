@@ -42,7 +42,7 @@ namespace Hackathon
 
         private void searchBtn_Click(object sender, RoutedEventArgs e)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             ResultsPic.Visibility = Visibility.Visible;
         }
 
@@ -55,6 +55,8 @@ namespace Hackathon
         private void advSearch_Click(object sender, MouseButtonEventArgs e)
         {
             advSearchGrid.Visibility = (advSearchGrid.Visibility == Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
+            if (ResultsPic.Visibility == Visibility.Visible)
+                ResultsPic.Visibility = Visibility.Hidden;
         }
 
         private void Pic_Click(object sender, MouseButtonEventArgs e)
