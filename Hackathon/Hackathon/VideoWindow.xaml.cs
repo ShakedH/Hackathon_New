@@ -39,7 +39,7 @@ namespace Hackathon
             timerVideoTime = new DispatcherTimer();
             timerVideoTime.Interval = TimeSpan.FromSeconds(0.1);
             timerVideoTime.Tick += new EventHandler(timer_Tick);
-            minionPlayer.Play();
+            btnPlay_Click(null, null);
         }
 
         private void minionPlayer_MediaOpened(object sender, RoutedEventArgs e)

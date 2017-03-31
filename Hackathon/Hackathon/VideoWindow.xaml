@@ -69,7 +69,7 @@
                               MediaOpened="minionPlayer_MediaOpened"
                               ScrubbingEnabled="True"
                               LoadedBehavior="Manual"
-                              Source="C:\Users\Ron Michaeli\Downloads\20min.mp4" />
+                              Source="20min.mp4" />
                 <ScrollBar Orientation="Horizontal"
                            Grid.Row="1"
                            Name="sbarPosition"
