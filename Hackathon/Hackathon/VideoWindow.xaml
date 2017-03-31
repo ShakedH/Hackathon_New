@@ -170,19 +170,18 @@
                       Visibility="Hidden"
                       IsReadOnly="True"
                       AutoGenerateColumns="False"
-                      MouseDoubleClick="txtSearchResults_MouseDoubleClick">
+                      MouseDoubleClick="txtSearchResults_MouseDoubleClick"
+                      HeadersVisibility="Column">
                 <DataGrid.RowStyle>
                     <Style TargetType="{x:Type DataGridRow}">
                         <Setter Property="FontSize"
                                 Value="18" />
                         <Setter Property="FontFamily"
                                 Value="Cambria" />
-                        <Setter Property="FontWeight"
-                                Value="Bold" />
                         <Setter Property="Foreground"
                                 Value="Black" />
                         <Setter Property="Background"
-                                Value="Wheat" />
+                                Value="AliceBlue" />
                     </Style>
                 </DataGrid.RowStyle>
             </DataGrid>
