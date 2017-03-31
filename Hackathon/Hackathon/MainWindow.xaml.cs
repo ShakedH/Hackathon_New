@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace Hackathon
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string _defaultText = "Search in our videos...";
+        private const string _defaultText = "Search in our lectures...";
 
         public MainWindow()
         {
@@ -29,6 +30,7 @@ namespace Hackathon
             searchBox.Foreground = Brushes.LightSlateGray;
             searchBox.Text = _defaultText;
             searchBox.VerticalContentAlignment = VerticalAlignment.Center;
+            advSearchGrid.Visibility = Visibility.Hidden;
         }
 
         private void searchBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -40,7 +42,8 @@ namespace Hackathon
 
         private void searchBtn_Click(object sender, RoutedEventArgs e)
         {
-            new VideoWindow().Show();
+            Thread.Sleep(2000);
+            ResultsPic.Visibility = Visibility.Visible;
         }
 
         private void searchBox_KeyDown(object sender, KeyEventArgs e)
@@ -51,7 +54,12 @@ namespace Hackathon
 
         private void advSearch_Click(object sender, MouseButtonEventArgs e)
         {
+            advSearchGrid.Visibility = (advSearchGrid.Visibility == Visibility.Visible) ? Visibility.Hidden : Visibility.Visible;
+        }
 
+        private void Pic_Click(object sender, MouseButtonEventArgs e)
+        {
+            new VideoWindow().Show();
         }
     }
 }

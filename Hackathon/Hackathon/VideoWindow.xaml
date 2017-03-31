@@ -69,7 +69,7 @@
                               MediaOpened="minionPlayer_MediaOpened"
                               ScrubbingEnabled="True"
                               LoadedBehavior="Manual"
-                              Source="C:\Users\Ron Michaeli\Downloads\1.mp4" />
+                              Source="C:\Users\Ron Michaeli\Downloads\20min.mp4" />
                 <ScrollBar Orientation="Horizontal"
                            Grid.Row="1"
                            Name="sbarPosition"
@@ -187,15 +187,7 @@
                 <LineBreak />
                 <Bold>Lecture: </Bold>
                 2
-                <LineBreak />
-                <Bold>Tags: </Bold>
             </TextBlock>
-            <TextBlock Name="txtTags"
-                       Grid.Row="6"
-                       Grid.ColumnSpan="5"
-                       Grid.RowSpan="2"
-                       FontSize="18"
-                       TextWrapping="Wrap" />
         </Grid>
     </Grid>
 </Window>
