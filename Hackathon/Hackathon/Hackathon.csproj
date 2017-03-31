@@ -104,8 +104,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\1.JPG" />
     <Resource Include="Images\Logo.png" />
-    <Resource Include="Images\1.png" />
     <Resource Include="Images\Pause.png" />
     <Resource Include="Images\Play.png" />
     <Resource Include="Images\Stop.png" />

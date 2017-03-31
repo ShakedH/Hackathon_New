@@ -22,7 +22,7 @@ namespace Hackathon
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string _defaultText = "Search in our lectures...";
+        private const string _defaultText = "Search in our videos...";
 
         public MainWindow()
         {
