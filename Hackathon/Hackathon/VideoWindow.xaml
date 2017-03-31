@@ -133,7 +133,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
-                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.8*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*" />
@@ -171,6 +171,20 @@
                       IsReadOnly="True"
                       AutoGenerateColumns="False"
                       MouseDoubleClick="txtSearchResults_MouseDoubleClick">
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="FontSize"
+                                Value="18" />
+                        <Setter Property="FontFamily"
+                                Value="Cambria" />
+                        <Setter Property="FontWeight"
+                                Value="Bold" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="Background"
+                                Value="Wheat" />
+                    </Style>
+                </DataGrid.RowStyle>
             </DataGrid>
             <TextBlock Name="txtDescription"
                        Grid.Row="1"
