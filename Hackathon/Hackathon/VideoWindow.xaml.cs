@@ -133,6 +133,7 @@ namespace Hackathon
 
         private void GetSearchResults()
         {
+            GenerateColumns();
             string term = searchBox.Text.ToLower();
             List<TimeInVid> allTimes = p.SearchWord(term);
             List<string[]> itemsSource = new List<string[]>();
@@ -145,6 +146,28 @@ namespace Hackathon
             }
             txtSearchResults.Visibility = Visibility.Visible;
             txtSearchResults.ItemsSource = itemsSource;
+        }
+
+        private void GenerateColumns()
+        {
+            DataGridTextColumn col = new DataGridTextColumn();
+            col.Header = "Time";
+            col.Binding = new Binding("[0]");
+            txtSearchResults.Columns.Add(col);
+
+            col = new DataGridTextColumn();
+            col.Header = "Phrase";
+            col.Binding = new Binding("[1]");
+            txtSearchResults.Columns.Add(col);
+            col.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
+
+        private void txtSearchResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string[] selectedRow = (string[])(((DataGrid)sender).SelectedItems[0]);
+            string timeToJump = selectedRow[0];
+            minionPlayer.Position = TimeSpan.Parse(timeToJump);
+            ShowPosition();
         }
     }
 }
