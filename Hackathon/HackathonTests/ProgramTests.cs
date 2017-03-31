@@ -69,5 +69,13 @@ namespace Hackathon.Tests
             program.LoadFromFile(binaryDirectory);
             List<TimeInVid> times = program.SearchWord("layer");
         }
+
+        [TestMethod()]
+        public void TestGetSentence()
+        {
+            program.LoadFromFile(binaryDirectory);
+            List<TimeInVid> times = program.SearchWord("layer");
+            Console.WriteLine(program.GetSentence("layer", times[0]));
+        }
     }
 }
