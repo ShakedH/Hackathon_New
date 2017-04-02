@@ -5,8 +5,202 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackathon"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Search-VD"
+        WindowState="Maximized">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+        <Image Source="/Images/Logo.png"
+               Grid.Column="7"
+               Grid.Row="4"
+               Grid.ColumnSpan="2"
+               Grid.RowSpan="2" />
+        <TextBlock Text="Ctrl-FV"
+                   Grid.Column="7"
+                   Grid.Row="4"
+                   Grid.RowSpan="2"
+                   Grid.ColumnSpan="4"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Right"
+                   FontSize="32"
+                   FontFamily="/Hackathon;component/Fonts/#Revalia" />
+        <TextBlock Text="ideos"
+                   Grid.Column="11"
+                   Grid.Row="4"
+                   Grid.RowSpan="2"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Bottom"
+                   FontSize="20"
+                   FontFamily="/Hackathon;component/Fonts/#Revalia" />
+        <TextBox Name="searchBox"
+                 Grid.Column="5"
+                 Grid.Row="7"
+                 Grid.ColumnSpan="10"
+                 FontSize="22"
+                 PreviewMouseDown="searchBox_PreviewMouseDown"
+                 KeyDown="searchBox_KeyDown">
+            <TextBox.Effect>
+                <DropShadowEffect ShadowDepth="5"
+                                  Color="Gray"
+                                  Opacity=".2"
+                                  RenderingBias="Performance" />
+            </TextBox.Effect>
+        </TextBox>
+        <Button Content="Search"
+                Grid.Column="15"
+                Grid.Row="7"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Click="searchBtn_Click"
+                Padding="10">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="5"
+                                  Color="Gray"
+                                  Opacity=".2"
+                                  RenderingBias="Performance" />
+            </Button.Effect>
+        </Button>
+        <TextBlock Text="Advanced Search"
+                   Grid.Column="12"
+                   Grid.Row="8"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="16"
+                   TextDecorations="Underline"
+                   MouseLeftButtonDown="advSearch_Click" />
+        <Grid Name="advSearchGrid"
+              Grid.Column="3"
+              Grid.Row="10"
+              Grid.ColumnSpan="14"
+              Grid.RowSpan="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Select Faculty:"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       FontSize="14" />
+            <ComboBox Name="facComboBox"
+                      Grid.Column="0"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      FontSize="14">
+                <ComboBoxItem>Engineering Sciences</ComboBoxItem>
+                <ComboBoxItem>Health Sciences</ComboBoxItem>
+                <ComboBoxItem>Natural Sciences</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Select Department:"
+                       Grid.Column="3"
+                       Grid.ColumnSpan="2"
+                       FontSize="14" />
+            <ComboBox Grid.Column="3"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      FontSize="14">
+                <ComboBoxItem>Communication Engineering</ComboBoxItem>
+                <ComboBoxItem>Electrical Engineering</ComboBoxItem>
+                <ComboBoxItem>IS Engineering</ComboBoxItem>
+                <ComboBoxItem>Mechanical Engineering</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Select Course:"
+                       Grid.Column="6"
+                       Grid.ColumnSpan="2"
+                       FontSize="14" />
+            <ComboBox Grid.Column="6"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      FontSize="14">
+                <ComboBoxItem>Communication 101</ComboBoxItem>
+                <ComboBoxItem>Signal Processing</ComboBoxItem>
+                <ComboBoxItem>Calculus I</ComboBoxItem>
+                <ComboBoxItem>Calculus II</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Select Lecturer:"
+                       Grid.Column="9"
+                       Grid.ColumnSpan="2"
+                       FontSize="14" />
+            <ComboBox Grid.Column="9"
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      FontSize="14">
+                <ComboBoxItem>Prof. Guy Lerer</ComboBoxItem>
+                <ComboBoxItem>Dr. Dan Shpitz</ComboBoxItem>
+                <ComboBoxItem>Prof. Reuven Hai</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <Image Name="ResultsPic"
+               Visibility="Hidden"
+               Source="/Images/1.JPG"
+               Grid.Column="6"
+               Grid.Row="12"
+               Grid.ColumnSpan="8"
+               Grid.RowSpan="7"
+               MouseLeftButtonDown="Pic_Click"
+               Cursor="Hand"/>
     </Grid>
 </Window>
