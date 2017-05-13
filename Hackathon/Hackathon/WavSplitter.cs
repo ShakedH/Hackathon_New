@@ -41,11 +41,11 @@ namespace Hackathon
                 int bytesRequired = (int)(endPos - reader.Position);
                 if (bytesRequired > 0)
                 {
-                 //   int bytesToRead = Math.Min(bytesRequired, buffer.Length);
+                   // int bytesToRead = Math.Min(bytesRequired, buffer.Length);
                     int bytesRead = reader.Read(buffer, 0, buffer.Length);
                     if (bytesRead > 0)
                     {
-                        
+
                         writer.Write(buffer, 0, bytesRead);
                     }
                     else if (bytesRead == 0)
@@ -94,8 +94,14 @@ namespace Hackathon
                 string OutPutPath = @".\\";
                 ConvertWavToMono con = new ConvertWavToMono(inputPath, OutPutPath);
                 con.Convert();
+                File.Delete(outPutfilePath);
             }
+
+
         }
+
+
+
     }
 }
 
