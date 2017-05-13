@@ -149,7 +149,7 @@
     <Compile Include="APIClient.cs" />
     <Compile Include="APIGoogleClient.cs" />
     <Compile Include="Parser.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Converter.cs" />
     <Compile Include="TimeInVid.cs" />
     <Compile Include="VideoToWavConverter.cs" />
     <Compile Include="VideoWindow.xaml.cs">

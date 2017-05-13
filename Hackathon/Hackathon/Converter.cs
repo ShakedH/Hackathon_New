@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 
 namespace Hackathon
 {
-    public class Program
+    public class Converter
     {
-        private APIClient ApiClient;
         private APIGoogleClient ApiGoogleCLient;
 
         private VideoToWavConverter VidToSoundConverter;
@@ -20,14 +19,6 @@ namespace Hackathon
         private const int TimeIntervals = 15;
 
         private const string OutputFilesFormat = "OutPut*.wav";
-
-        private Dictionary<string, List<TimeInVid>> m_terms = new Dictionary<string, List<TimeInVid>>();
-
-        public Dictionary<string, List<TimeInVid>> Terms
-        {
-            get { return m_terms; }
-            set { m_terms = value; }
-        }
 
         private int m_FilesParsed;
 
@@ -37,53 +28,19 @@ namespace Hackathon
             set { m_FilesParsed = value; }
         }
 
-        private Dictionary<string, Dictionary<TimeSpan, string>> m_Sentences = new Dictionary<string, Dictionary<TimeSpan, string>>();
-
-        public Dictionary<string, Dictionary<TimeSpan, string>> Sentences
-        {
-            get { return m_Sentences; }
-            private set { m_Sentences = value; }
-        }
-
-        public string GetSentence(string term, TimeInVid time)
-        {
-            if (Sentences.ContainsKey(term) && Sentences[term].ContainsKey(time.Start))
-                return Sentences[term][time.Start];
-            return "";
-        }
-
-        public Program(APIGoogleClient client)
+        public Converter(APIGoogleClient client)
         {
             this.ApiGoogleCLient = client;
         }
-        /*
-        public Program(APIClient client)
-        {
-            this.ApiClient = client;
-        }*/
 
-        public Dictionary<string, List<TimeInVid>> GetMostFrequentStrings(int numOfResults)
-        {
-            return (from entry in Terms orderby entry.Value.Capacity descending select entry)
-                   .ToDictionary(pair => pair.Key, pair => pair.Value).Take(numOfResults).ToDictionary(pair => pair.Key, pair => pair.Value);
-        }
-
-        public List<TimeInVid> SearchWord(string term)
-        {
-            term = term.ToLower();
-            if (Terms.ContainsKey(term))
-                return Terms[term];
-            return new List<TimeInVid>();
-        }
 
         /// <summary>
         /// Make Sure stopWordsFile is in the same place as file!
         /// </summary>
         public Dictionary<string, List<TimeInVid>> ConvertVideo(string filePath, int filesParsed = 0)
         {
-            this.FilesParsed = filesParsed;
-            if (FilesParsed > 0)
-                LoadFromFile(filePath.Replace(".mp4", ".bin"));
+            Dictionary<string, Dictionary<TimeSpan, string>> Sentences = new Dictionary<string, Dictionary<TimeSpan, string>>();
+            Dictionary<string, List<TimeInVid>> Terms = new Dictionary<string, List<TimeInVid>>();
 
             if (!File.Exists(filePath))
                 throw new ArgumentException(string.Format("File {0} not found!", filePath));
@@ -143,41 +100,7 @@ namespace Hackathon
                 }
             }
 
-            return Terms;
         }
 
-        public void SaveToFile(string Directory)
-        {
-            string TermsFilePath = Directory + @"\Terms.bin";
-            using (FileStream stream = File.Open(TermsFilePath, FileMode.Create))
-            {
-                BinaryFormatter writer = new BinaryFormatter();
-                writer.Serialize(stream, Terms);
-            }
-
-            string SentencesFilePath = Directory + @"\Sentences.bin";
-            using (FileStream stream = File.Open(SentencesFilePath, FileMode.Create))
-            {
-                BinaryFormatter writer = new BinaryFormatter();
-                writer.Serialize(stream, Sentences);
-            }
-        }
-
-        public void LoadFromFile(string Directory)
-        {
-            string TermsFilePath = Directory + @"\Terms.bin";
-            using (FileStream stream = File.Open(TermsFilePath, FileMode.Open))
-            {
-                BinaryFormatter reader = new BinaryFormatter();
-                Terms = (Dictionary<string, List<TimeInVid>>)reader.Deserialize(stream);
-            }
-
-            string SentencesFilePath = Directory + @"\Sentences.bin";
-            using (FileStream stream = File.Open(SentencesFilePath, FileMode.Open))
-            {
-                BinaryFormatter reader = new BinaryFormatter();
-                Sentences = (Dictionary<string, Dictionary<TimeSpan, string>>)reader.Deserialize(stream);
-            }
-        }
     }
 }
