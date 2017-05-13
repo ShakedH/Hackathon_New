@@ -98,9 +98,6 @@ namespace Hackathon
             TimeSpan start = new TimeSpan(0, 0, 0);
             TimeSpan end = start.Add(toAddSpan);
 
-            RESTClient rest = new RESTClient();
-            rest.Initialize();
-
             for (int i = 0; i < FilesParsed; i++)
             {
                 start = end;
@@ -112,12 +109,7 @@ namespace Hackathon
                 string currentFile = directory.FullName + "\\" + OutputFilesFormat.Replace("*", (i + 1).ToString());
                 try
                 {
-                    //string text = ApiClient.Convert(currentFile);
-                    string text = "";
-                    int number = Process.GetCurrentProcess().Threads.Count;
-                    Console.WriteLine(number);
-                    return null;
-                    rest.start(currentFile);
+                    string text = ApiClient.Convert(currentFile);
                     List<string> termsFound = Parser.Parse(text, directory.FullName);
                     foreach (string term in termsFound)
                     {
