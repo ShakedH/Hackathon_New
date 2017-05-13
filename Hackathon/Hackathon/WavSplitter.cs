@@ -13,6 +13,7 @@ namespace Hackathon
             {
                 using (WaveFileWriter writer = new WaveFileWriter(outPath, new WaveFormat()))
                 {
+
                     int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
 
                     int startPos = (int)cutFromStart.TotalMilliseconds * bytesPerMillisecond;
@@ -27,8 +28,12 @@ namespace Hackathon
             }
         }
 
+
+
+
         private static void TrimWavFile(WaveFileReader reader, WaveFileWriter writer, int startPos, int endPos)
         {
+
             reader.Position = startPos;
             byte[] buffer = new byte[1024];
             while (reader.Position < endPos)
@@ -36,14 +41,23 @@ namespace Hackathon
                 int bytesRequired = (int)(endPos - reader.Position);
                 if (bytesRequired > 0)
                 {
-                    int bytesToRead = Math.Min(bytesRequired, buffer.Length);
-                    int bytesRead = reader.Read(buffer, 0, bytesToRead);
+                 //   int bytesToRead = Math.Min(bytesRequired, buffer.Length);
+                    int bytesRead = reader.Read(buffer, 0, buffer.Length);
                     if (bytesRead > 0)
                     {
                         
                         writer.Write(buffer, 0, bytesRead);
                     }
+                    else if (bytesRead == 0)
+                    {
+                        break;
+                    }
                 }
+                else if (bytesRequired <= 0)
+                {
+                    break;
+                }
+
             }
         }
 
@@ -55,7 +69,9 @@ namespace Hackathon
 
         public static void Split(double myIntervalInSec, string path)
         {
-            string directory = Path.GetDirectoryName(path) + @"\";
+
+            string outPutPath = Path.GetFullPath((Path.Combine(Path.Combine(path, @"..\"))));
+
             double interval = myIntervalInSec;
             TimeSpan totalDuration = WavSplitter.GetWavFileDuration(path);
             double a = totalDuration.TotalSeconds;
@@ -66,15 +82,26 @@ namespace Hackathon
             int i = 1;
             while (end.TotalSeconds > 0)
             {
-                WavSplitter.TrimWavFile(path, directory + "OutPut" + i + ".wav", start, end);
+                string outPutfilePath = outPutPath + "OutPut" + i + ".wav";
+                WavSplitter.TrimWavFile(path, outPutfilePath, start, end);
                 timeFromEnd -= interval;
                 timeFromStart += interval;
                 end = TimeSpan.FromSeconds(timeFromEnd);
                 start = TimeSpan.FromSeconds(timeFromStart);
                 i++;
+                //convert to flac
+                string inputPath = outPutfilePath;
+                string OutPutPath = @".\\";
+                ConvertWavToMono con = new ConvertWavToMono(inputPath, OutPutPath);
+                con.Convert();
+
             }
 
+
         }
+
+
+
     }
 }
 
