@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Search-VD"
         WindowState="Maximized">
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition />

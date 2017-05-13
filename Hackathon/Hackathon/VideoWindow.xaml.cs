@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Hackathon
@@ -21,7 +16,7 @@ namespace Hackathon
     public partial class VideoWindow : Window
     {
         private const string _defaultText = "Search in the video...";
-        Program p = new Program(new APIClient());
+        Program p = new Program(new APIGoogleClient());
 
         public VideoWindow()
         {
@@ -146,6 +141,10 @@ namespace Hackathon
             }
             txtSearchResults.Visibility = Visibility.Visible;
             txtSearchResults.ItemsSource = itemsSource;
+
+            string results = String.Format("Results ({0})", allTimes.Count());
+            ResultText.Text = results;
+            ResultText.Visibility = Visibility.Visible;
         }
 
         private void GenerateColumns()
