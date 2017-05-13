@@ -51,7 +51,6 @@ namespace Hackathon
         }
 
 
-
         public Program(APIClient client)
         {
             this.ApiClient = client;
@@ -125,9 +124,9 @@ namespace Hackathon
                         Sentences[term].Add(time.Start, sentence);
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    //Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                 }
                 finally
                 {

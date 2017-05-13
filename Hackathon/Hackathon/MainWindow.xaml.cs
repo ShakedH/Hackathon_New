@@ -63,7 +63,5 @@ namespace Hackathon
         {
             new VideoWindow().Show();
         }
-
-        // Test
     }
 }
