@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Hackathon"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="Styles.xaml" />
     </Application.Resources>
 </Application>

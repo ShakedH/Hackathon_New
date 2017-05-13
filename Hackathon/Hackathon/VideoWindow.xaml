@@ -53,15 +53,35 @@
             <RowDefinition />
             <RowDefinition Height="0.5*" />
         </Grid.RowDefinitions>
+
+
+        <Image Source="/Images/Logo.png"
+               Grid.Column="0"
+               Grid.Row="0"
+               Grid.ColumnSpan="2"
+               Grid.RowSpan="2" 
+               Margin="7,4,6,6"
+               />
+
+        <TextBlock Text="Ctrl-FV"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   FontSize="16"
+                   FontFamily="/Hackathon;component/Fonts/#Revalia" Margin="40,0,0,0" />
+
         <Border BorderBrush="Black"
                 BorderThickness="1"
-                Grid.Column="5"
-                Grid.Row="1"
-                Grid.ColumnSpan="10"
-                Grid.RowSpan="10">
-            <Grid>
+                Grid.Column="1"
+                Grid.Row="2"
+                Grid.ColumnSpan="12"
+                Grid.RowSpan="12">
+            <Grid Margin="-0.333,-0.333,0,0.333">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
@@ -69,16 +89,16 @@
                               MediaOpened="mediaPlayer_MediaOpened"
                               ScrubbingEnabled="True"
                               LoadedBehavior="Manual"
-                              Source="20min.mp4" />
+                              Source="20min.mp4"  />
                 <ScrollBar Orientation="Horizontal"
-                           Grid.Row="1"
+                           Grid.Row="2"
                            Name="sbarPosition"
                            VerticalAlignment="Center"
-                           Visibility="Hidden" />
+                           Visibility="Hidden" Height="17" Margin="0,0.334,0.667,-0.001" />
                 <StackPanel Orientation="Horizontal"
-                            Grid.Row="2"
+                            Grid.Row="3"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center" Margin="45,0.001,45.667,-0.001">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
                             <Setter Property="Margin"
@@ -119,13 +139,12 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Grid Grid.Column="4"
-              Grid.Row="11"
-              Grid.RowSpan="8"
-              Grid.ColumnSpan="12">
+        <Grid Grid.Column="1"
+              Grid.Row="14"
+              Grid.RowSpan="5"
+              Grid.ColumnSpan="8" Margin="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -136,61 +155,19 @@
                 <ColumnDefinition Width="0.8*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.5*" />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
-            <TextBox Name="searchBox"
-                     Grid.Column="5"
-                     Grid.Row="1"
-                     Grid.ColumnSpan="4"
-                     FontSize="18"
-                     PreviewMouseDown="searchBox_PreviewMouseDown"
-                     KeyDown="searchBox_KeyDown">
-                <TextBox.Effect>
-                    <DropShadowEffect ShadowDepth="5"
-                                      Color="Gray"
-                                      Opacity=".2"
-                                      RenderingBias="Performance" />
-                </TextBox.Effect>
-            </TextBox>
-            <DataGrid Name="txtSearchResults"
-                      Grid.Column="5"
-                      Grid.Row="2"
-                      Grid.ColumnSpan="4"
-                      Grid.RowSpan="7"
-                      Margin="0,10,0,0"
-                      Visibility="Hidden"
-                      IsReadOnly="True"
-                      AutoGenerateColumns="False"
-                      MouseDoubleClick="txtSearchResults_MouseDoubleClick"
-                      HeadersVisibility="Column">
-                <DataGrid.RowStyle>
-                    <Style TargetType="{x:Type DataGridRow}">
-                        <Setter Property="FontSize"
-                                Value="18" />
-                        <Setter Property="FontFamily"
-                                Value="Cambria" />
-                        <Setter Property="Foreground"
-                                Value="Black" />
-                        <Setter Property="Background"
-                                Value="AliceBlue" />
-                    </Style>
-                </DataGrid.RowStyle>
-            </DataGrid>
+
+
             <TextBlock Name="txtDescription"
-                       Grid.Row="1"
                        Grid.ColumnSpan="5"
-                       Grid.RowSpan="5"
+                       Grid.RowSpan="11"
                        TextWrapping="Wrap"
-                       FontSize="18">
+                       FontSize="16">
                 <Bold>Faculty: </Bold>
                 Engineering
                 <LineBreak />
@@ -206,6 +183,101 @@
                 <Bold>Lecture: </Bold>
                 2
             </TextBlock>
+        </Grid>
+        <Grid Grid.ColumnSpan="7" Grid.Column="13"  Grid.Row="1" Grid.RowSpan="13">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBox Name="searchBox"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="5"
+                     Grid.Row="1"
+                     Grid.RowSpan="1"
+                  
+                     FontSize="18"
+                     PreviewMouseDown="searchBox_PreviewMouseDown"
+                     KeyDown="searchBox_KeyDown"  RenderTransformOrigin="0.495,1.714" Margin="0.333,0.333,0,0">
+                <TextBox.Effect>
+                    <DropShadowEffect ShadowDepth="5"
+                                      Color="#FF009BFF"
+                                      Opacity=".2"
+                                      RenderingBias="Performance" />
+                </TextBox.Effect>
+            </TextBox>
+            <TextBlock x:Name="SearchText"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left"  
+                       Text="Search"  FontFamily="/Hackathon;component/Fonts/#Revalia" 
+                       FontSize="15" VerticalAlignment="Center" Height="18" Width="69" 
+                       Grid.ColumnSpan="2"/>
+
+            <TextBlock x:Name="ResultText"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Visibility="Visible"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Bottom"
+                       Text=""  FontFamily="/Hackathon;component/Fonts/#Revalia" 
+                       FontSize="15"                        
+                       Grid.ColumnSpan="4"
+                       Grid.RowSpan="1" />
+
+            <DataGrid Name="txtSearchResults"
+                      FontSize="10"
+                      FontWeight="Medium"                   
+                      Grid.Column="1"
+                      Grid.Row="3"
+                      Grid.ColumnSpan="7"
+                      Grid.RowSpan="9"
+                      Margin="0.333,9.667,39,11.667"
+                      Visibility="Hidden"
+                      IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      MouseDoubleClick="txtSearchResults_MouseDoubleClick"
+                      HeadersVisibility="Column" Background="White" BorderBrush="{x:Null}">
+                <DataGrid.Foreground>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
+                </DataGrid.Foreground>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="FontSize"
+                                Value="18" />
+                        <Setter Property="FontFamily"
+                                Value="Cambria" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="Background"
+                                Value="White" />
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="FontWeight"  Value="Bold" />
+                        <Setter Property="FontSize"  Value="16" />
+
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+            </DataGrid>
         </Grid>
     </Grid>
 </Window>
