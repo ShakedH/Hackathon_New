@@ -28,7 +28,7 @@ namespace Hackathon
         public Dictionary<string, Dictionary<TimeSpan, string>> Sentences
         {
             get { return m_Sentences; }
-            private set { m_Sentences = value; }
+            set { m_Sentences = value; }
         }
         private VideoMetadata m_Metadata = new VideoMetadata("Engineering", "ISSE", "Communication", "Dr. Kobi Gal");
         public VideoMetadata Metadata

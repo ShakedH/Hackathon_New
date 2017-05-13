@@ -22,23 +22,17 @@ namespace Hackathon
 
         private int m_FilesParsed;
 
-        public int FilesParsed
-        {
-            get { return m_FilesParsed; }
-            set { m_FilesParsed = value; }
-        }
-
         public Converter(APIGoogleClient client)
         {
             this.ApiGoogleCLient = client;
         }
 
-
         /// <summary>
         /// Make Sure stopWordsFile is in the same place as file!
         /// </summary>
-        public Dictionary<string, List<TimeInVid>> ConvertVideo(string filePath, int filesParsed = 0)
+        public Video ConvertVideo(string filePath, string vidName, int filesParsed = 0)
         {
+            m_FilesParsed = filesParsed;
             Dictionary<string, Dictionary<TimeSpan, string>> Sentences = new Dictionary<string, Dictionary<TimeSpan, string>>();
             Dictionary<string, List<TimeInVid>> Terms = new Dictionary<string, List<TimeInVid>>();
 
@@ -59,12 +53,12 @@ namespace Hackathon
             TimeSpan start = new TimeSpan(0, 0, 0);
             TimeSpan end = start.Add(toAddSpan);
 
-            for (int i = 0; i < FilesParsed; i++)
+            for (int i = 0; i < m_FilesParsed; i++)
             {
                 start = end;
                 end = start.Add(toAddSpan);
             }
-            for (int i = FilesParsed; i < taskFiles.Length; i++)
+            for (int i = m_FilesParsed; i < taskFiles.Length; i++)
             {
                 // find file #(i+1):
                 string currentFile = directory.FullName + "\\" + OutputFilesFormat.Replace("*", (i + 1).ToString());
@@ -94,11 +88,17 @@ namespace Hackathon
                 }
                 finally
                 {
-                    FilesParsed++;
+                    m_FilesParsed++;
                     start = end;
                     end = start.Add(toAddSpan);
                 }
+
             }
+            Video video = new Video(vidName);
+            // Add Metadata
+            video.Sentences = Sentences;
+            video.Terms = Terms;
+            return video;
 
         }
 
