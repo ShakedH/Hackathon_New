@@ -21,9 +21,7 @@ namespace Hackathon
                     toReturn += alternative.Transcript + " ";
                 }
             }
-
             return toReturn;
-
 
         }
 
