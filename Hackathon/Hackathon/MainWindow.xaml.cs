@@ -70,6 +70,8 @@ namespace Hackathon
         {
             List<string> parsedSearchText = Parser.Parse(searchBox.Text);
             RetrieveResults(parsedSearchText);
+            if (advSearchGrid.Visibility == Visibility.Visible)
+                advSearchGrid.Visibility = Visibility.Hidden;
             SearchResultsGrid.Visibility = Visibility.Visible;
         }
 

@@ -25,6 +25,10 @@ namespace Hackathon
             searchBox.Text = _defaultText;
             searchBox.VerticalContentAlignment = VerticalAlignment.Center;
             m_Video = Video.LoadVideoFromResource(videoName);
+            FacultyText.Text = m_Video.Metadata.Faculty;
+            DepartmentText.Text = m_Video.Metadata.Department;
+            CourseText.Text = m_Video.Metadata.Course;
+            LecturerText.Text = m_Video.Metadata.Lecturer;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

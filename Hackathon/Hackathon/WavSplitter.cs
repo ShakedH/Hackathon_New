@@ -94,14 +94,8 @@ namespace Hackathon
                 string OutPutPath = @".\\";
                 ConvertWavToMono con = new ConvertWavToMono(inputPath, OutPutPath);
                 con.Convert();
-
             }
-
-
         }
-
-
-
     }
 }
 

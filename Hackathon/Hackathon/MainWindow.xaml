@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackathon"
         mc:Ignorable="d"
-        Title="Search-VD"
+        Title="Ctrl-FV"
         WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -194,14 +194,17 @@
                 <ComboBoxItem>Prof. Reuven Hai</ComboBoxItem>
             </ComboBox>
         </Grid>
-        <ScrollViewer Name="SearchResultsGrid"
-                      Grid.Column="5"
-                      Grid.Row="10"
-                      Grid.RowSpan="9"
-                      Grid.ColumnSpan="10"
-                      VerticalScrollBarVisibility="Auto">
-            <StackPanel Name="SearchResultsStackPanel">
-            </StackPanel>
-        </ScrollViewer>
+        <Border Name="SearchResultsGrid"
+                BorderBrush="Black"
+                BorderThickness="0.5"
+                Grid.Column="5"
+                Grid.Row="10"
+                Grid.RowSpan="9"
+                Grid.ColumnSpan="10"
+                Padding="5">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Name="SearchResultsStackPanel" />
+            </ScrollViewer>
+        </Border>
     </Grid>
 </Window>
