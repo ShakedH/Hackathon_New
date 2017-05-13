@@ -216,6 +216,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Content Include="Resources\ffmpeg.exe" />
+    <None Include="Resources\ClimateChange.bin" />
     <None Include="Resources\Communication.bin" />
     <None Include="Resources\MainIndex.bin" />
     <None Include="Resources\stop_words.txt" />
