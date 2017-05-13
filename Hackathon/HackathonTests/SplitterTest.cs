@@ -41,11 +41,11 @@ namespace HackathonTests
         public void convertAndSplit()
         {
 
-            string inputPath = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\Lecture.mp4";
-            string OutPutPath = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\";
+            string inputPath = @"C:\Users\adamz\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\ted.mp4";
+            string OutPutPath = @"C:\Users\adamz\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\";
             VideoToWavConverter vdCconv = new VideoToWavConverter(inputPath, OutPutPath);
             vdCconv.Convert();
-            WavSplitter.Split(15, "Lecture_audio.wav");
+            WavSplitter.Split(15, "ted_audio.wav");
         }
     }
 }
