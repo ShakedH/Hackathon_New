@@ -15,7 +15,7 @@ namespace Hackathon.Tests
         string videoFile = @"C:\Users\user\Desktop\Hack\20min.mp4";
         string binaryDirectory = @"C:\Users\user\Desktop\Hack";
         Stopwatch sw = new Stopwatch();
-        Program program = new Program(new APIClient());
+        Program program = new Program(new APIGoogleClient());
 
         [TestMethod()]
         public void ConvertVideoTest()
@@ -41,7 +41,7 @@ namespace Hackathon.Tests
         [TestMethod()]
         public void TestLoad()
         {
-            Program program = new Program(new APIClient());
+            Program program = new Program(new APIGoogleClient());
             try
             {
                 program.LoadFromFile(binaryDirectory);
