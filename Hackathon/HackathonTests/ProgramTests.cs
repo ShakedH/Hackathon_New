@@ -14,7 +14,7 @@ namespace HackathonTests
     {
         string videoFile = @"C:\Users\user\Desktop\Hack\5min.mp4";
         string binaryDirectory = @"C:\Users\user\Desktop\Hack";
-        string videoName = "20min";
+        string videoName = "LieSpotting";
         Stopwatch sw = new Stopwatch();
         Converter converter = new Converter(new APIGoogleClient());
 
