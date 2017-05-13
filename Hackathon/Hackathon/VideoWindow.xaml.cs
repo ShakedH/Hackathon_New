@@ -16,7 +16,7 @@ namespace Hackathon
     public partial class VideoWindow : Window
     {
         private const string _defaultText = "Search in the video...";
-        Program p = new Program(new APIClient());
+        Program p = new Program(new APIGoogleClient());
 
         public VideoWindow()
         {
