@@ -85,8 +85,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <MediaElement x:Name="minionPlayer"
-                              MediaOpened="minionPlayer_MediaOpened"
+                <MediaElement x:Name="mediaPlayer"
+                              MediaOpened="mediaPlayer_MediaOpened"
                               ScrubbingEnabled="True"
                               LoadedBehavior="Manual"
                               Source="20min.mp4"  />

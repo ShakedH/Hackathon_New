@@ -24,8 +24,8 @@ namespace Hackathon
             if (!OutputAudioPath.EndsWith(@"\"))
                 OutputAudioPath += @"\";
             string videoFileName = GetVideoFileName();
-            OutputFullPath = OutputAudioPath + videoFileName + "_audio.wav";
-            CommandLine = string.Format("C:\\ffmpeg\\bin\\ffmpeg -i \"{0}\" -c:a flac \"{1}\"", VideoFilePath, OutputFullPath);
+            OutputFullPath = OutputAudioPath + videoFileName + "_audio.flac";
+            CommandLine = string.Format("C:\\ffmpeg\\bin\\ffmpeg -i \"{0}\" \"{1}\"", VideoFilePath, OutputFullPath);
         }
 
         private string GetVideoFileName()

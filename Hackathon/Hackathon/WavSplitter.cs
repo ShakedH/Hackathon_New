@@ -11,7 +11,7 @@ namespace Hackathon
         {
             using (WaveFileReader reader = new WaveFileReader(inPath))
             {
-                using (WaveFileWriter writer = new WaveFileWriter(outPath, reader.WaveFormat))
+                using (WaveFileWriter writer = new WaveFileWriter(outPath, new WaveFormat()))
                 {
 
                     int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
@@ -45,6 +45,7 @@ namespace Hackathon
                     int bytesRead = reader.Read(buffer, 0, buffer.Length);
                     if (bytesRead > 0)
                     {
+                        
                         writer.Write(buffer, 0, bytesRead);
                     }
                     else if (bytesRead == 0)

@@ -1,5 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace Hackathon.Tests
+﻿using Hackathon;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+namespace HackathonTests
 {
     [TestClass()]
     public class SplitterTest
@@ -46,11 +47,5 @@ namespace Hackathon.Tests
             vdCconv.Convert();
             WavSplitter.Split(15, "Lecture_audio.wav");
         }
-
-
-
-
-
-
     }
 }
