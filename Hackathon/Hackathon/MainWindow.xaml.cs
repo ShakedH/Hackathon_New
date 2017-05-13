@@ -10,7 +10,7 @@ namespace Hackathon
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string _defaultText = "Search in our videos...";
+        private const string _defaultText = "Search our videos...";
 
         public MainWindow()
         {
@@ -51,5 +51,7 @@ namespace Hackathon
         {
             new VideoWindow().Show();
         }
+
+        // Test
     }
 }
