@@ -72,7 +72,7 @@ namespace Hackathon
                 {
                     //string text = ApiClient.Convert(currentFile);
                     string text = ApiGoogleCLient.Convert(currentFile);
-                    List<string> termsFound = Parser.Parse(text, directory.FullName);
+                    List<string> termsFound = Parser.Parse(text);
                     foreach (string term in termsFound)
                     {
                         if (!Terms.ContainsKey(term))

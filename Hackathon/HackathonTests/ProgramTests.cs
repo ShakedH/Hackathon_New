@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace Hackathon.Tests
+namespace HackathonTests
 {
     [TestClass()]
     public class ProgramTests

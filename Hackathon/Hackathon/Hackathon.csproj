@@ -151,6 +151,9 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="TimeInVid.cs" />
+    <Compile Include="Video.cs" />
+    <Compile Include="VideoDetails.cs" />
+    <Compile Include="VideoMetadata.cs" />
     <Compile Include="VideoToWavConverter.cs" />
     <Compile Include="VideoWindow.xaml.cs">
       <DependentUpon>VideoWindow.xaml</DependentUpon>
@@ -191,7 +194,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Images\1.JPG" />
+    <Content Include="Resources\ffmpeg.exe" />
+    <None Include="bin\Debug\Communication.bin" />
+    <None Include="bin\Debug\MainIndex.bin" />
+    <None Include="Resources\Communication.bin" />
+    <None Include="Resources\stop_words.txt" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\Pause.png" />
     <Resource Include="Images\Play.png" />
@@ -200,7 +207,7 @@
     <Resource Include="Images\Previous.png" />
     <Resource Include="Images\Restart.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Content Include="Fonts\Revalia-Regular.ttf">
@@ -218,6 +225,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.1.2.2\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.1.2.2\build\net45\Grpc.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

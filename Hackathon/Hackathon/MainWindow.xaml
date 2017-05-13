@@ -109,7 +109,8 @@
                    HorizontalAlignment="Right"
                    FontSize="16"
                    TextDecorations="Underline"
-                   MouseLeftButtonDown="advSearch_Click" />
+                   MouseLeftButtonDown="advSearch_Click"
+                   Cursor="Hand" />
         <Grid Name="advSearchGrid"
               Grid.Column="3"
               Grid.Row="10"
@@ -192,14 +193,13 @@
                 <ComboBoxItem>Prof. Reuven Hai</ComboBoxItem>
             </ComboBox>
         </Grid>
-        <Image Name="ResultsPic"
-               Visibility="Hidden"
-               Source="/Images/1.JPG"
-               Grid.Column="6"
-               Grid.Row="12"
-               Grid.ColumnSpan="8"
-               Grid.RowSpan="7"
-               MouseLeftButtonDown="Pic_Click"
-               Cursor="Hand"/>
+        <ScrollViewer Name="SearchResultsGrid"
+                      Grid.Column="3"
+                      Grid.Row="10"
+                      Grid.RowSpan="9"
+                      Grid.ColumnSpan="14">
+            <StackPanel Name="SearchResultsStackPanel">
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
