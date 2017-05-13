@@ -30,7 +30,7 @@ namespace Hackathon
             get { return m_Sentences; }
             set { m_Sentences = value; }
         }
-        private VideoMetadata m_Metadata = new VideoMetadata("Engineering", "ISSE", "Communication", "Dr. Kobi Gal");
+        private VideoMetadata m_Metadata;
         public VideoMetadata Metadata
         {
             get { return m_Metadata; }
@@ -40,6 +40,7 @@ namespace Hackathon
         public Video(string name)
         {
             this.Name = name;
+            //this.Metadata = new VideoMetadata("Engineering", "Communication Dept.", "Communication 101", "Dr. Guy Shpitz");
         }
 
         public string GetSentence(string term, TimeInVid time)
