@@ -29,9 +29,12 @@ namespace HackathonTests
             }
             */
 
-           // WavSplitter.Split(30, "test_Lecture");
+             WavSplitter.Split(15, "short.wav");
 
-
+           /* string inputPath = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\OutPut3.wav";
+            string OutPutPath = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\";
+            ConvertWavToMono con = new ConvertWavToMono(inputPath, OutPutPath);
+            con.Convert();*/
         }
 
         [TestMethod()]
@@ -42,7 +45,7 @@ namespace HackathonTests
             string OutPutPath = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\";
             VideoToWavConverter vdCconv = new VideoToWavConverter(inputPath, OutPutPath);
             vdCconv.Convert();
-            WavSplitter.Split(30, "Lecture_audio.wav");
+            WavSplitter.Split(15, "Lecture_audio.wav");
         }
     }
 }

@@ -142,7 +142,7 @@
         <Grid Grid.Column="1"
               Grid.Row="14"
               Grid.RowSpan="5"
-              Grid.ColumnSpan="8" Margin="4">
+              Grid.ColumnSpan="8" Margin="4.">
             <Grid.ColumnDefinitions>
                 
                 <ColumnDefinition />
