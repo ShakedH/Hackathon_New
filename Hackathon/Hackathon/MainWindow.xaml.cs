@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -74,6 +75,7 @@ namespace Hackathon
 
         private void RetrieveResults(List<string> parsedSearchText)
         {
+            SearchResultsStackPanel.Children.Clear();
             foreach (string term in parsedSearchText)
             {
                 if (!m_MainIndex.ContainsKey(term))
@@ -86,10 +88,22 @@ namespace Hackathon
                     TextBlock nameTB = new TextBlock();
                     nameTB.Text = vd.Name;
                     nameTB.Cursor = Cursors.Hand;
-                    nameTB.FontSize = 18;
+                    nameTB.FontSize = 20;
+                    nameTB.FontWeight = FontWeights.Bold;
+                    nameTB.TextDecorations = TextDecorations.Underline;
+                    nameTB.Foreground = Brushes.Blue;
 
                     TextBlock keywordsTB = new TextBlock();
-                    keywordsTB.Text = string.Join(" ", vd.Keywords);
+                    keywordsTB.Inlines.Add(new Run("Keywords:")
+                    {
+                        FontSize = 16,
+                        FontWeight = FontWeights.Bold,
+                        TextDecorations = TextDecorations.Underline
+                    });
+                    keywordsTB.Inlines.Add(new Run(" " + string.Join(", ", vd.Keywords))
+                    {
+                        FontSize = 16
+                    });
 
                     StackPanel record = new StackPanel();
                     record.Name = vd.Name;
@@ -104,6 +118,8 @@ namespace Hackathon
             if (SearchResultsStackPanel.Children.Count == 0)    // No results
             {
                 TextBlock noResults = new TextBlock();
+                noResults.FontSize = 16;
+                noResults.FontWeight = FontWeights.Bold;
                 noResults.Text = "Oops, we couldn't find videos that match your search...";
                 SearchResultsStackPanel.Children.Add(noResults);
             }

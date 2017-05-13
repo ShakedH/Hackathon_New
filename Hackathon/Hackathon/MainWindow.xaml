@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Search-VD"
         WindowState="Maximized">
-    <Grid >
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition />
@@ -92,8 +92,9 @@
                 Grid.Column="15"
                 Grid.Row="7"
                 Grid.ColumnSpan="2"
-                Click="searchBtn_Click"          
-                Style="{StaticResource BlueButtonStyle}" Margin="5,0.5,3,0.5"  >
+                Click="searchBtn_Click"
+                Style="{StaticResource BlueButtonStyle}"
+                Margin="5,0.5,3,0.5">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="5"
                                   Color="Gray"
@@ -194,10 +195,11 @@
             </ComboBox>
         </Grid>
         <ScrollViewer Name="SearchResultsGrid"
-                      Grid.Column="3"
+                      Grid.Column="5"
                       Grid.Row="10"
                       Grid.RowSpan="9"
-                      Grid.ColumnSpan="14">
+                      Grid.ColumnSpan="10"
+                      VerticalScrollBarVisibility="Auto">
             <StackPanel Name="SearchResultsStackPanel">
             </StackPanel>
         </ScrollViewer>
