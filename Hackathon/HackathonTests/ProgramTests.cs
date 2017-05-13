@@ -17,13 +17,14 @@ namespace Hackathon.Tests
         Stopwatch sw = new Stopwatch();
         Program program = new Program(new APIClient());
 
-        [TestMethod()]
-        public void ConvertVideoTest()
+
+
+        public async void ConvertVideoTest()
         {
             sw.Restart();
             try
             {
-                Dictionary<string, List<TimeInVid>> terms = program.ConvertVideo(videoFile);
+                Dictionary<string, List<TimeInVid>> terms = await program.ConvertVideo(videoFile);
                 program.SaveToFile(binaryDirectory);
             }
             catch (Exception e)

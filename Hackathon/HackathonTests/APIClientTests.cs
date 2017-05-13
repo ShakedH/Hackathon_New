@@ -21,7 +21,7 @@ namespace Hackathon.Tests
             try
             {
                 APIClient client = new APIClient();
-                response = client.Convert(file);
+                response = client.Convert(file).Result;
             }
             catch (Exception e)
             {
@@ -43,7 +43,7 @@ namespace Hackathon.Tests
             try
             {
                 APIClient client = new APIClient();
-                response = client.Convert(inFilePath);
+                response = client.Convert(inFilePath).Result;
             }
             catch (Exception e)
             {
@@ -66,7 +66,7 @@ namespace Hackathon.Tests
             string file = @"C:\Users\user\Desktop\Hack\NotExistFile.wav";
             string response = "";
             APIClient client = new APIClient();
-            response = client.Convert(file);
+            response = client.Convert(file).Result;
         }
 
         [TestMethod()]
@@ -120,7 +120,7 @@ namespace Hackathon.Tests
                 try
                 {
                     int j = i;
-                    string response = client.Convert(file, i < 20);
+                    string response = client.Convert(file, i < 20).Result;
                     using (System.IO.StreamWriter outFile =
           new System.IO.StreamWriter(fileStart + i + ".txt"))
                     {

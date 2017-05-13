@@ -74,7 +74,7 @@ namespace Hackathon
         /// <summary>
         /// Make Sure stopWordsFile is in the same place as file!
         /// </summary>
-        public Dictionary<string, List<TimeInVid>> ConvertVideo(string filePath, int filesParsed = 0)
+        public async Task<Dictionary<string, List<TimeInVid>>> ConvertVideo(string filePath, int filesParsed = 0)
         {
             this.FilesParsed = filesParsed;
             if (FilesParsed > 0)
@@ -108,7 +108,8 @@ namespace Hackathon
                 string currentFile = directory.FullName + "\\" + OutputFilesFormat.Replace("*", (i + 1).ToString());
                 try
                 {
-                    string text = ApiClient.Convert(currentFile);
+                    //string text = "";
+                    string text = (await ApiClient.Convert(currentFile));
                     List<string> termsFound = Parser.Parse(text, directory.FullName);
                     foreach (string term in termsFound)
                     {
@@ -125,9 +126,9 @@ namespace Hackathon
                         Sentences[term].Add(time.Start, sentence);
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    //Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                 }
                 finally
                 {
