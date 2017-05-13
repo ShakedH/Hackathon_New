@@ -12,7 +12,7 @@ namespace Hackathon.Tests
     [TestClass()]
     public class ProgramTests
     {
-        string videoFile = @"C:\Users\user\Desktop\Hack\5min.mp4";
+        string videoFile = @"C:\Users\user\Desktop\Hack\20min.mp4";
         string binaryDirectory = @"C:\Users\user\Desktop\Hack";
         Stopwatch sw = new Stopwatch();
         Program program = new Program(new APIClient());

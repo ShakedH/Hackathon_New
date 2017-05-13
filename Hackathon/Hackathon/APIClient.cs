@@ -14,7 +14,6 @@ using System.Threading;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.CognitiveServices.SpeechRecognition;
 
 namespace Hackathon
 {
@@ -22,28 +21,11 @@ namespace Hackathon
     {
 
         private const string URL = "https://speech.platform.bing.com/recognize";
-        private const string AuthenticationKey1 = "eeebe3f13511421e888c5deb5ef0be8e";
-        private const string AuthenticationKey2 = "d229725c7ce34d70b30950ee2ae12575";
-
-        //DataRecognitionClient client;
+        private const string AuthenticationKey1 = "983ad0ecbb4d40db8bf6fac8c88022d0";
+        private const string AuthenticationKey2 = "89d52a07c0cb45a9ac03a719fe2f6950";
 
 
-        //public APIClient()
-        //{
-        //    client = SpeechRecognitionServiceFactory.CreateDataClient(SpeechRecognitionMode.ShortPhrase, "en-US", AuthenticationKey1);
-        //    client.AuthenticationUri = "";
-        //    client.OnResponseReceived += Client_OnResponseReceived;
-        //    client.OnPartialResponseReceived += Client_OnPartialResponseReceived;
-        //    client.OnConversationError += Client_OnConversationError; ;
-        //}
-
-        //private void Client_OnConversationError(object sender, SpeechErrorEventArgs e)
-        //{
-        //    Console.WriteLine("error");
-        //    throw new NotImplementedException();
-        //}
-
-        public string Convert(string FilePath, bool firstKey = false)
+        public string Convert(string FilePath, bool firstKey = true)
         {
             if (!File.Exists(FilePath))
                 throw new ArgumentException(string.Format("File {0} not found", FilePath));
@@ -60,7 +42,7 @@ namespace Hackathon
 
             string requestUri = URL.Trim(new char[] { '/', '?' });
 
-            ///* URI Params. Refer to the README file for more information. */
+            /* URI Params. Refer to the README file for more information. */
             requestUri += @"?scenarios=smd";                                  // websearch is the other main option.
             requestUri += @"&appid=D4D52672-91D7-4C74-8AD8-42B1D98141A5";     // You must use this ID.
             requestUri += @"&locale=en-US";                                   // We support several other languages.  Refer to README file.
@@ -141,53 +123,6 @@ namespace Hackathon
             text = Regex.Replace(text, "<.*?>", string.Empty);
             return text;
         }
-
-        //public string Convert(string FilePath, bool firstKey = true)
-        //{
-        //    using (FileStream fileStream = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
-        //    {
-        //        // Note for wave files, we can just send data from the file right to the server.
-        //        // In the case you are not an audio file in wave format, and instead you have just
-        //        // raw data (for example audio coming over bluetooth), then before sending up any 
-        //        // audio data, you must first send up an SpeechAudioFormat descriptor to describe 
-        //        // the layout and format of your raw audio data via DataRecognitionClient's sendAudioFormat() method.
-        //        int bytesRead = 0;
-        //        byte[] buffer = new byte[1024];
-
-        //        try
-        //        {
-        //            do
-        //            {
-        //                // Get more Audio data to send into byte buffer.
-        //                bytesRead = fileStream.Read(buffer, 0, buffer.Length);
-
-        //                // Send of audio data to service. 
-        //                client.SendAudio(buffer, bytesRead);
-        //            }
-        //            while (bytesRead > 0);
-        //        }
-        //        finally
-        //        {
-        //            // We are done sending audio.  Final recognition results will arrive in OnResponseReceived event call.
-        //            client.EndAudio();
-        //        }
-        //    }
-        //    Thread.Sleep(1000);
-        //    return null;
-        //}
-
-        //private void Client_OnResponseReceived(object sender, SpeechResponseEventArgs e)
-        //{
-        //    Console.WriteLine("success");
-        //    throw new NotImplementedException();
-        //}
-
-        //private void Client_OnPartialResponseReceived(object sender, PartialSpeechResponseEventArgs e)
-        //{
-        //    Console.WriteLine("success partially");
-        //    throw new NotImplementedException();
-        //}
-
     }
 
     /*
