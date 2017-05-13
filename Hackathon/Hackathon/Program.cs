@@ -13,6 +13,7 @@ namespace Hackathon
     public class Program
     {
         private APIClient ApiClient;
+        private APIGoogleClient ApiGoogleCLient;
 
         private VideoToWavConverter VidToSoundConverter;
 
@@ -51,12 +52,15 @@ namespace Hackathon
             return "";
         }
 
-
-
+        public Program(APIGoogleClient client)
+        {
+            this.ApiGoogleCLient = client;
+        }
+        /*
         public Program(APIClient client)
         {
             this.ApiClient = client;
-        }
+        }*/
 
         public Dictionary<string, List<TimeInVid>> GetMostFrequentStrings(int numOfResults)
         {
@@ -109,7 +113,8 @@ namespace Hackathon
                 string currentFile = directory.FullName + "\\" + OutputFilesFormat.Replace("*", (i + 1).ToString());
                 try
                 {
-                    string text = ApiClient.Convert(currentFile);
+                    //string text = ApiClient.Convert(currentFile);
+                    string text = ApiGoogleCLient.Convert(currentFile);
                     List<string> termsFound = Parser.Parse(text, directory.FullName);
                     foreach (string term in termsFound)
                     {
