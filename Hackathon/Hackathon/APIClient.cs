@@ -24,16 +24,26 @@ namespace Hackathon
         private const string URL = "https://speech.platform.bing.com/recognize";
         private const string AuthenticationKey1 = "eeebe3f13511421e888c5deb5ef0be8e";
         private const string AuthenticationKey2 = "d229725c7ce34d70b30950ee2ae12575";
-        DataRecognitionClient client;
+
+        //DataRecognitionClient client;
 
 
-        public APIClient()
-        {
-            client = SpeechRecognitionServiceFactory.CreateDataClient(SpeechRecognitionMode.ShortPhrase, "en-US", AuthenticationKey1);
-            client.AuthenticationUri = URL;
-            client.OnResponseReceived += Client_OnResponseReceived;
-        }
-        public string ConvertOld(string FilePath, bool firstKey = false)
+        //public APIClient()
+        //{
+        //    client = SpeechRecognitionServiceFactory.CreateDataClient(SpeechRecognitionMode.ShortPhrase, "en-US", AuthenticationKey1);
+        //    client.AuthenticationUri = "";
+        //    client.OnResponseReceived += Client_OnResponseReceived;
+        //    client.OnPartialResponseReceived += Client_OnPartialResponseReceived;
+        //    client.OnConversationError += Client_OnConversationError; ;
+        //}
+
+        //private void Client_OnConversationError(object sender, SpeechErrorEventArgs e)
+        //{
+        //    Console.WriteLine("error");
+        //    throw new NotImplementedException();
+        //}
+
+        public string Convert(string FilePath, bool firstKey = false)
         {
             if (!File.Exists(FilePath))
                 throw new ArgumentException(string.Format("File {0} not found", FilePath));
@@ -132,43 +142,52 @@ namespace Hackathon
             return text;
         }
 
-        public string Convert(string FilePath, bool firstKey = true)
-        {
-            using (FileStream fileStream = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
-            {
-                // Note for wave files, we can just send data from the file right to the server.
-                // In the case you are not an audio file in wave format, and instead you have just
-                // raw data (for example audio coming over bluetooth), then before sending up any 
-                // audio data, you must first send up an SpeechAudioFormat descriptor to describe 
-                // the layout and format of your raw audio data via DataRecognitionClient's sendAudioFormat() method.
-                int bytesRead = 0;
-                byte[] buffer = new byte[1024];
+        //public string Convert(string FilePath, bool firstKey = true)
+        //{
+        //    using (FileStream fileStream = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
+        //    {
+        //        // Note for wave files, we can just send data from the file right to the server.
+        //        // In the case you are not an audio file in wave format, and instead you have just
+        //        // raw data (for example audio coming over bluetooth), then before sending up any 
+        //        // audio data, you must first send up an SpeechAudioFormat descriptor to describe 
+        //        // the layout and format of your raw audio data via DataRecognitionClient's sendAudioFormat() method.
+        //        int bytesRead = 0;
+        //        byte[] buffer = new byte[1024];
 
-                try
-                {
-                    do
-                    {
-                        // Get more Audio data to send into byte buffer.
-                        bytesRead = fileStream.Read(buffer, 0, buffer.Length);
+        //        try
+        //        {
+        //            do
+        //            {
+        //                // Get more Audio data to send into byte buffer.
+        //                bytesRead = fileStream.Read(buffer, 0, buffer.Length);
 
-                        // Send of audio data to service. 
-                        client.SendAudio(buffer, bytesRead);
-                    }
-                    while (bytesRead > 0);
-                }
-                finally
-                {
-                    // We are done sending audio.  Final recognition results will arrive in OnResponseReceived event call.
-                    client.EndAudio();
-                }
-            }
-            throw new NotImplementedException();
-        }
+        //                // Send of audio data to service. 
+        //                client.SendAudio(buffer, bytesRead);
+        //            }
+        //            while (bytesRead > 0);
+        //        }
+        //        finally
+        //        {
+        //            // We are done sending audio.  Final recognition results will arrive in OnResponseReceived event call.
+        //            client.EndAudio();
+        //        }
+        //    }
+        //    Thread.Sleep(1000);
+        //    return null;
+        //}
 
-        private void Client_OnResponseReceived(object sender, SpeechResponseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void Client_OnResponseReceived(object sender, SpeechResponseEventArgs e)
+        //{
+        //    Console.WriteLine("success");
+        //    throw new NotImplementedException();
+        //}
+
+        //private void Client_OnPartialResponseReceived(object sender, PartialSpeechResponseEventArgs e)
+        //{
+        //    Console.WriteLine("success partially");
+        //    throw new NotImplementedException();
+        //}
+
     }
 
     /*
