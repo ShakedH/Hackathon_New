@@ -14,7 +14,6 @@ using System.Threading;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
-using System.Net.Http.Headers;
 
 namespace Hackathon
 {
@@ -26,92 +25,92 @@ namespace Hackathon
         private const string AuthenticationKey2 = "89d52a07c0cb45a9ac03a719fe2f6950";
 
 
-        //public string Convert(string FilePath, bool firstKey = true)
-        //{
-        //    if (!File.Exists(FilePath))
-        //        throw new ArgumentException(string.Format("File {0} not found", FilePath));
+        public string Convert(string FilePath, bool firstKey = true)
+        {
+            if (!File.Exists(FilePath))
+                throw new ArgumentException(string.Format("File {0} not found", FilePath));
 
-        //    // Note: Sign up at http://www.projectoxford.ai to get a subscription key.  Search for Speech APIs from Azure Marketplace.  
-        //    // Use the subscription key as Client secret below.
-        //    Authentication auth;
-        //    if (firstKey)
-        //        auth = new Authentication(AuthenticationKey1);
-        //    else
-        //        auth = new Authentication(AuthenticationKey2);
+            // Note: Sign up at http://www.projectoxford.ai to get a subscription key.  Search for Speech APIs from Azure Marketplace.  
+            // Use the subscription key as Client secret below.
+            Authentication auth;
+            if (firstKey)
+                auth = new Authentication(AuthenticationKey1);
+            else
+                auth = new Authentication(AuthenticationKey2);
 
 
 
-        //    string requestUri = URL.Trim(new char[] { '/', '?' });
+            string requestUri = URL.Trim(new char[] { '/', '?' });
 
-        //    /* URI Params. Refer to the README file for more information. */
-        //    requestUri += @"?scenarios=smd";                                  // websearch is the other main option.
-        //    requestUri += @"&appid=D4D52672-91D7-4C74-8AD8-42B1D98141A5";     // You must use this ID.
-        //    requestUri += @"&locale=en-US";                                   // We support several other languages.  Refer to README file.
-        //    requestUri += @"&device.os=wp7";
-        //    requestUri += @"&version=3.0";
-        //    requestUri += @"&format=json";
-        //    requestUri += @"&instanceid=565D69FF-E928-4B7E-87DA-9A750B96D9E3";
-        //    requestUri += @"&requestid=" + Guid.NewGuid().ToString();
+            /* URI Params. Refer to the README file for more information. */
+            requestUri += @"?scenarios=smd";                                  // websearch is the other main option.
+            requestUri += @"&appid=D4D52672-91D7-4C74-8AD8-42B1D98141A5";     // You must use this ID.
+            requestUri += @"&locale=en-US";                                   // We support several other languages.  Refer to README file.
+            requestUri += @"&device.os=wp7";
+            requestUri += @"&version=3.0";
+            requestUri += @"&format=json";
+            requestUri += @"&instanceid=565D69FF-E928-4B7E-87DA-9A750B96D9E3";
+            requestUri += @"&requestid=" + Guid.NewGuid().ToString();
 
-        //    string host = @"speech.platform.bing.com";
-        //    string contentType = @"audio/wav; codec=""audio/pcm""; samplerate=16000";
+            string host = @"speech.platform.bing.com";
+            string contentType = @"audio/wav; codec=""audio/pcm""; samplerate=16000";
 
-        //    /*
-        //     * Input your own audio file or use read from a microphone stream directly.
-        //     */
-        //    string responseString;
-        //    FileStream fs = null;
+            /*
+             * Input your own audio file or use read from a microphone stream directly.
+             */
+            string responseString;
+            FileStream fs = null;
 
-        //    var token = auth.GetAccessToken();
+            var token = auth.GetAccessToken();
 
-        //    HttpWebRequest request = null;
-        //    request = (HttpWebRequest)HttpWebRequest.Create(requestUri);
-        //    request.SendChunked = true;
-        //    request.Accept = @"application/json;text/xml";
-        //    request.Method = "POST";
-        //    request.ProtocolVersion = HttpVersion.Version11;
-        //    request.Host = host;
-        //    request.ContentType = contentType;
-        //    request.Headers["Authorization"] = "Bearer " + token;
+            HttpWebRequest request = null;
+            request = (HttpWebRequest)HttpWebRequest.Create(requestUri);
+            request.SendChunked = true;
+            request.Accept = @"application/json;text/xml";
+            request.Method = "POST";
+            request.ProtocolVersion = HttpVersion.Version11;
+            request.Host = host;
+            request.ContentType = contentType;
+            request.Headers["Authorization"] = "Bearer " + token;
 
-        //    using (fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
-        //    {
+            using (fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
+            {
 
-        //        /*
-        //         * Open a request stream and write 1024 byte chunks in the stream one at a time.
-        //         */
-        //        byte[] buffer = null;
-        //        int bytesRead = 0;
-        //        using (Stream requestStream = request.GetRequestStream())
-        //        {
-        //            /*
-        //             * Read 1024 raw bytes from the input audio file.
-        //             */
-        //            buffer = new Byte[checked((uint)Math.Min(1024, (int)fs.Length))];
-        //            while ((bytesRead = fs.Read(buffer, 0, buffer.Length)) != 0)
-        //            {
-        //                requestStream.Write(buffer, 0, bytesRead);
-        //            }
+                /*
+                 * Open a request stream and write 1024 byte chunks in the stream one at a time.
+                 */
+                byte[] buffer = null;
+                int bytesRead = 0;
+                using (Stream requestStream = request.GetRequestStream())
+                {
+                    /*
+                     * Read 1024 raw bytes from the input audio file.
+                     */
+                    buffer = new Byte[checked((uint)Math.Min(1024, (int)fs.Length))];
+                    while ((bytesRead = fs.Read(buffer, 0, buffer.Length)) != 0)
+                    {
+                        requestStream.Write(buffer, 0, bytesRead);
+                    }
 
-        //            // Flush
-        //            requestStream.Flush();
-        //        }
+                    // Flush
+                    requestStream.Flush();
+                }
 
-        //        /*
-        //         * Get the response from the service.
-        //         */
-        //        using (WebResponse response = request.GetResponse())
-        //        {
-        //            Console.WriteLine(((HttpWebResponse)response).StatusCode);
+                /*
+                 * Get the response from the service.
+                 */
+                using (WebResponse response = request.GetResponse())
+                {
+                    Console.WriteLine(((HttpWebResponse)response).StatusCode);
 
-        //            using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-        //            {
-        //                responseString = sr.ReadToEnd();
-        //            }
-        //        }
-        //    }
-        //    return ProcessResponse(responseString);
-        //}
+                    using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                    {
+                        responseString = sr.ReadToEnd();
+                    }
+                }
+            }
+            return ProcessResponse(responseString);
+        }
 
         private string ProcessResponse(string responseString)
         {
@@ -123,52 +122,6 @@ namespace Hackathon
             text = text.Trim(new char[] { '<', '>' });
             text = Regex.Replace(text, "<.*?>", string.Empty);
             return text;
-        }
-
-        public async Task<string> Convert(string filename, bool f = true)
-        {
-
-            // Read audio file to a stream
-            var file = await PCLStorage.FileSystem.Current.LocalStorage.GetFileAsync(filename);
-            var fileStream = await file.OpenAsync(PCLStorage.FileAccess.Read);
-            Authentication auth = new Authentication(AuthenticationKey1);
-
-            // Send audio stream to Bing and deserialize the response
-            string requestUri = GenerateRequestUri(URL);
-            string accessToken = auth.GetAccessToken();
-            var response = await SendRequestAsync(fileStream, requestUri, accessToken, "audio/wav; codec=\"audio / pcm\"; samplerate=16000.");
-            string speechResults = ProcessResponse(response);
-
-            fileStream.Dispose();
-            return speechResults;
-        }
-
-        string GenerateRequestUri(string speechEndpoint)
-        {
-            string requestUri = speechEndpoint;
-            requestUri += @"?scenarios=ulm";                                    // websearch is the other option
-            requestUri += @"&appid=D4D52672-91D7-4C74-8AD8-42B1D98141A5";       // You must use this ID
-            requestUri += @"&locale=en-US";                                     // Other languages supported
-            requestUri += string.Format("&device.os={0}", "wp7");     // Open field
-            requestUri += @"&version=3.0";                                      // Required value
-            requestUri += @"&format=json";                                      // Required value
-            requestUri += @"&instanceid=fe34a4de-7927-4e24-be60-f0629ce1d808";  // GUID for device making the request
-            requestUri += @"&requestid=" + Guid.NewGuid().ToString();           // GUID for the request
-            return requestUri;
-        }
-
-        async Task<string> SendRequestAsync(Stream fileStream, string url, string bearerToken, string contentType)
-        {
-            var content = new StreamContent(fileStream);
-            content.Headers.TryAddWithoutValidation("Content-Type", contentType);
-
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
-                var response = await httpClient.PostAsync(url, content);
-
-                return await response.Content.ReadAsStringAsync();
-            }
         }
     }
 
