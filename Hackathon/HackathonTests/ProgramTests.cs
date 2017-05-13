@@ -12,9 +12,9 @@ namespace HackathonTests
     [TestClass()]
     public class ProgramTests
     {
-        string videoFile = @"C:\Users\user\Desktop\Hack\5min.mp4";
-        string binaryDirectory = @"C:\Users\user\Desktop\Hack";
-        string videoName = "20min";
+        string videoFile = @"C:\Users\adamz\Desktop\ClimateChange.mp4";
+        string binaryDirectory = @"C:\Users\adamz\Desktop\gg";
+        string videoName = "ClimateChange";
         Stopwatch sw = new Stopwatch();
         Converter converter = new Converter(new APIGoogleClient());
 

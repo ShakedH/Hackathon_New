@@ -63,6 +63,16 @@ namespace Hackathon.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] ClimateChange {
+            get {
+                object obj = ResourceManager.GetObject("ClimateChange", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] Communication {
             get {
                 object obj = ResourceManager.GetObject("Communication", resourceCulture);
