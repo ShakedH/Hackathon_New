@@ -84,8 +84,9 @@ namespace Hackathon
                 foreach (VideoDetails vd in vdList)
                 {
                     TextBlock nameTB = new TextBlock();
-                    nameTB.Cursor = Cursors.Hand;
                     nameTB.Text = vd.Name;
+                    nameTB.Cursor = Cursors.Hand;
+                    nameTB.FontSize = 18;
 
                     TextBlock keywordsTB = new TextBlock();
                     keywordsTB.Text = string.Join(" ", vd.Keywords);
@@ -111,7 +112,9 @@ namespace Hackathon
         private void Record_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             string videoName = (sender as StackPanel).Name;
-            new VideoWindow(videoName).Show();
+            VideoWindow vidWin = new VideoWindow(videoName);
+            vidWin.Show();
+            vidWin.Topmost = true;
         }
 
         private void advSearch_Click(object sender, MouseButtonEventArgs e)
