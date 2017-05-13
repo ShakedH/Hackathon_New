@@ -18,13 +18,13 @@ namespace Hackathon.Tests
         Program program = new Program(new APIClient());
 
 
-
-        public async void ConvertVideoTest()
+        [TestMethod()]
+        public void ConvertVideoTest()
         {
             sw.Restart();
             try
             {
-                Dictionary<string, List<TimeInVid>> terms = await program.ConvertVideo(videoFile);
+                Dictionary<string, List<TimeInVid>> terms = program.ConvertVideo(videoFile);
                 program.SaveToFile(binaryDirectory);
             }
             catch (Exception e)
