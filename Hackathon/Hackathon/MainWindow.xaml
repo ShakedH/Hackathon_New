@@ -83,7 +83,7 @@
                  KeyDown="searchBox_KeyDown">
             <TextBox.Effect>
                 <DropShadowEffect ShadowDepth="5"
-                                  Color="Gray"
+                                  Color="#FF009BFF"
                                   Opacity=".2"
                                   RenderingBias="Performance" />
             </TextBox.Effect>
@@ -92,9 +92,8 @@
                 Grid.Column="15"
                 Grid.Row="7"
                 Grid.ColumnSpan="2"
-                HorizontalAlignment="Center"
-                Click="searchBtn_Click"
-                Padding="10">
+                Click="searchBtn_Click"          
+                Style="{StaticResource BlueButtonStyle}" Margin="5,0.5,3,0.5"  >
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="5"
                                   Color="Gray"
