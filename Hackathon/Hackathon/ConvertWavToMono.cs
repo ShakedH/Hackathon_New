@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms;
 
 namespace Hackathon
 {
-    public class VideoToWavConverter
+    public class ConvertWavToMono
     {
         public string VideoFilePath { get; private set; }
         public string OutputAudioPath { get; set; }
         public string OutputFullPath { get; set; }
         public string CommandLine { get; private set; }
 
-        public VideoToWavConverter(string inputVideoPath, string outputAudioPath)
+        public ConvertWavToMono(string inputVideoPath, string outputAudioPath)
         {
             if (!File.Exists(inputVideoPath))
                 throw new ArgumentException("Input video file does not exists at: " + inputVideoPath);
@@ -24,8 +23,8 @@ namespace Hackathon
             if (!OutputAudioPath.EndsWith(@"\"))
                 OutputAudioPath += @"\";
             string videoFileName = GetVideoFileName();
-            OutputFullPath = OutputAudioPath + videoFileName + "_audio.wav";
-            CommandLine = string.Format("C:\\ffmpeg\\bin\\ffmpeg -i \"{0}\" -c:a flac \"{1}\"", VideoFilePath, OutputFullPath);
+            OutputFullPath = OutputAudioPath + videoFileName + ".flac";
+            CommandLine = string.Format("C:\\ffmpeg\\bin\\ffmpeg -i \"{0}\" -ac 1 \"{1}\"", VideoFilePath, OutputFullPath);
         }
 
         private string GetVideoFileName()
