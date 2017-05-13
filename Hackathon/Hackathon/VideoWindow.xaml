@@ -182,7 +182,7 @@
                        FontSize="16"
                        Grid.ColumnSpan="6"
                        Grid.Row="1"
-                       Grid.Column="2"
+                       Grid.Column="1"
                        HorizontalAlignment="Left" />
             <TextBlock Text="Course:"
                        FontSize="16"
