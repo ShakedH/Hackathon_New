@@ -10,35 +10,31 @@ namespace Hackathon
     public class Program
     {
         private APIClient ApiClient;
-
         private VideoToWavConverter VidToSoundConverter;
-
         private const int TimeIntervals = 15;
-
-        private const string OutputFilesFormat = "OutPut*.wav";
-
-        private Dictionary<string, List<TimeInVid>> m_terms = new Dictionary<string, List<TimeInVid>>();
-
-        public Dictionary<string, List<TimeInVid>> Terms
-        {
-            get { return m_terms; }
-            set { m_terms = value; }
-        }
-
         private int m_FilesParsed;
-
         public int FilesParsed
         {
             get { return m_FilesParsed; }
             set { m_FilesParsed = value; }
         }
-
+        private const string OutputFilesFormat = "OutPut*.wav";
+        private Dictionary<string, List<TimeInVid>> m_Terms = new Dictionary<string, List<TimeInVid>>();
+        public Dictionary<string, List<TimeInVid>> Terms
+        {
+            get { return m_Terms; }
+            set { m_Terms = value; }
+        }
         private Dictionary<string, Dictionary<TimeSpan, string>> m_Sentences = new Dictionary<string, Dictionary<TimeSpan, string>>();
-
         public Dictionary<string, Dictionary<TimeSpan, string>> Sentences
         {
             get { return m_Sentences; }
             private set { m_Sentences = value; }
+        }
+
+        public Program(APIClient client)
+        {
+            this.ApiClient = client;
         }
 
         public string GetSentence(string term, TimeInVid time)
@@ -46,13 +42,6 @@ namespace Hackathon
             if (Sentences.ContainsKey(term) && Sentences[term].ContainsKey(time.Start))
                 return Sentences[term][time.Start];
             return "";
-        }
-
-
-
-        public Program(APIClient client)
-        {
-            this.ApiClient = client;
         }
 
         public Dictionary<string, List<TimeInVid>> GetMostFrequentStrings(int numOfResults)
@@ -107,7 +96,7 @@ namespace Hackathon
                 try
                 {
                     string text = ApiClient.Convert(currentFile);
-                    List<string> termsFound = Parser.Parse(text, directory.FullName);
+                    List<string> termsFound = Parser.Parse(text/*, directory.FullName*/);
                     foreach (string term in termsFound)
                     {
                         if (!Terms.ContainsKey(term))

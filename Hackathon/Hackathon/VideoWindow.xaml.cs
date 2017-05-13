@@ -15,18 +15,17 @@ namespace Hackathon
     public partial class VideoWindow : Window
     {
         private const string _defaultText = "Search in the video...";
-        Program p = new Program(new APIClient());
+        private Video m_Video;
+        private DispatcherTimer timerVideoTime;
 
-        public VideoWindow()
+        public VideoWindow(string videoName)
         {
             InitializeComponent();
             searchBox.Foreground = Brushes.LightSlateGray;
             searchBox.Text = _defaultText;
             searchBox.VerticalContentAlignment = VerticalAlignment.Center;
-            p.LoadFromFile(Environment.CurrentDirectory);
+            m_Video = Video.LoadVideoFromResource(videoName);
         }
-
-        private DispatcherTimer timerVideoTime;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -36,18 +35,18 @@ namespace Hackathon
             btnPlay_Click(null, null);
         }
 
-        private void minionPlayer_MediaOpened(object sender, RoutedEventArgs e)
+        private void mediaPlayer_MediaOpened(object sender, RoutedEventArgs e)
         {
             sbarPosition.Minimum = 0;
-            sbarPosition.Maximum = minionPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+            sbarPosition.Maximum = mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
             sbarPosition.Visibility = Visibility.Visible;
-            Duration.Text = minionPlayer.NaturalDuration.TimeSpan.ToString();
+            Duration.Text = mediaPlayer.NaturalDuration.TimeSpan.ToString();
         }
 
         private void ShowPosition()
         {
-            sbarPosition.Value = minionPlayer.Position.TotalSeconds;
-            txtPosition.Text = string.Format("{0:hh\\:mm\\:ss}", minionPlayer.Position);
+            sbarPosition.Value = mediaPlayer.Position.TotalSeconds;
+            txtPosition.Text = string.Format("{0:hh\\:mm\\:ss}", mediaPlayer.Position);
         }
 
         private void EnableButtons(bool is_playing)
@@ -71,39 +70,39 @@ namespace Hackathon
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            minionPlayer.Play();
+            mediaPlayer.Play();
             EnableButtons(true);
         }
 
         private void btnPause_Click(object sender, RoutedEventArgs e)
         {
-            minionPlayer.Pause();
+            mediaPlayer.Pause();
             EnableButtons(false);
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            minionPlayer.Stop();
+            mediaPlayer.Stop();
             EnableButtons(false);
             ShowPosition();
         }
 
         private void btnRestart_Click(object sender, RoutedEventArgs e)
         {
-            minionPlayer.Stop();
-            minionPlayer.Play();
+            mediaPlayer.Stop();
+            mediaPlayer.Play();
             EnableButtons(true);
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            minionPlayer.Position += TimeSpan.FromSeconds(10);
+            mediaPlayer.Position += TimeSpan.FromSeconds(10);
             ShowPosition();
         }
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            minionPlayer.Position -= TimeSpan.FromSeconds(10);
+            mediaPlayer.Position -= TimeSpan.FromSeconds(10);
             ShowPosition();
         }
 
@@ -129,13 +128,13 @@ namespace Hackathon
         {
             GenerateColumns();
             string term = searchBox.Text.ToLower();
-            List<TimeInVid> allTimes = p.SearchWord(term);
+            List<TimeInVid> allTimes = m_Video.SearchWord(term);
             List<string[]> itemsSource = new List<string[]>();
             foreach (TimeInVid tiv in allTimes)
             {
                 string[] data = new string[2];
                 data[0] = tiv.ToString();
-                data[1] = p.GetSentence(term, tiv);
+                data[1] = m_Video.GetSentence(term, tiv);
                 itemsSource.Add(data);
             }
             txtSearchResults.Visibility = Visibility.Visible;
@@ -162,7 +161,7 @@ namespace Hackathon
         {
             string[] selectedRow = (string[])(((DataGrid)sender).SelectedItems[0]);
             string timeToJump = selectedRow[0];
-            minionPlayer.Position = TimeSpan.Parse(timeToJump);
+            mediaPlayer.Position = TimeSpan.Parse(timeToJump);
             ShowPosition();
         }
     }

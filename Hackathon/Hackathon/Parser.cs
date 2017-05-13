@@ -11,24 +11,15 @@ namespace Hackathon
     public class Parser
     {
         private static char[] delimeters = new char[] { '.', ' ', ',', '-' };
-        private static string[] stopWords;
-        private static string stopWordsFileName = "stopWords.txt";
+        private static string[] stopWords = Properties.Resources.stop_words.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-        public static List<string> Parse(string text, string stopWordsPathDirectory)
+        public static List<string> Parse(string text)
         {
-            string path = stopWordsPathDirectory + @"\" + stopWordsFileName;
-            if (stopWords == null)
-                GetStopWords(path);
-            List<string> words = text.Split(delimeters).ToList<string>();
+            List<string> words = text.Split(delimeters).ToList();
             words = words.ConvertAll(d => d.ToLower());
-            words = words.Except(stopWords).ToList<string>();
-            words = words.Where(s => !string.IsNullOrEmpty(s)).ToList<string>();
+            words = words.Except(stopWords).ToList();
+            words = words.Where(s => !string.IsNullOrEmpty(s)).ToList();
             return words;
-        }
-
-        private static void GetStopWords(string stopWordsPath)
-        {
-            stopWords = File.ReadAllLines(stopWordsPath);
         }
     }
 }
