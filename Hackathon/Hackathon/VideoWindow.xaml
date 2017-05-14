@@ -84,8 +84,7 @@
                 <MediaElement x:Name="mediaPlayer"
                               MediaOpened="mediaPlayer_MediaOpened"
                               ScrubbingEnabled="True"
-                              LoadedBehavior="Manual"
-                              Source="20min.mp4" />
+                              LoadedBehavior="Manual" />
                 <ScrollBar Orientation="Horizontal"
                            Grid.Row="2"
                            Name="sbarPosition"
