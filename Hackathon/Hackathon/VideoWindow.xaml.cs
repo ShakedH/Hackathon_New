@@ -29,6 +29,7 @@ namespace Hackathon
             DepartmentText.Text = m_Video.Metadata.Department;
             CourseText.Text = m_Video.Metadata.Course;
             LecturerText.Text = m_Video.Metadata.Lecturer;
+            mediaPlayer.Source = new Uri(videoName + ".mp4", UriKind.Relative);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
