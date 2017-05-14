@@ -20,7 +20,6 @@ namespace HackathonTests
             //    BinaryFormatter reader = new BinaryFormatter();
             //    mainIndex = (Dictionary<string, List<VideoDetails>>)reader.Deserialize(stream);
             //}
-
             string fileName = "Communication";
             Video video = Video.LoadVideoFromResource(fileName);
             video.Metadata = new VideoMetadata("Engineering", "Information Sys. Engineering", "Communication 101", "Dr. Gal Shpitz");
