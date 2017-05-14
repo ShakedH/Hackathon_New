@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Hackathon
 {
@@ -18,7 +13,7 @@ namespace Hackathon
 
         private const int TimeIntervals = 15;
 
-        private const string OutputFilesFormat = "OutPut*.wav";
+        private const string OutputFilesFormat = "OutPut*.flac";
 
         private int m_FilesParsed;
 
