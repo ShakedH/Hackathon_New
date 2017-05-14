@@ -64,7 +64,10 @@ namespace Hackathon
 
         private void searchBtn_Click(object sender, RoutedEventArgs e)
         {
-            List<string> parsedSearchText = Parser.Parse(searchBox.Text);
+            string searchTerms = string.Empty;
+            if (searchBox.Text != _defaultText)
+                searchTerms = searchBox.Text;
+            List<string> parsedSearchText = Parser.Parse(searchTerms);
             RetrieveResults(parsedSearchText);
             if (advSearchGrid.Visibility == Visibility.Visible)
                 advSearchGrid.Visibility = Visibility.Hidden;
@@ -108,17 +111,7 @@ namespace Hackathon
                     record.PreviewMouseDown += Record_PreviewMouseDown;
                     record.Children.Add(nameTB);
                     record.Children.Add(keywordsTB);
-                    record.Margin = new Thickness(0, 0, 0, 10);
-
-                    //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Images\" + vd.Name + ".jpg");
-                    //BitmapImage img = new BitmapImage(new Uri(path));
-                    //Image thumbnail = new Image();
-                    //thumbnail.Source = img;
-
-                    //StackPanel record = new StackPanel();
-                    //record.Orientation = Orientation.Horizontal;
-                    //record.Children.Add(thumbnail);
-                    //record.Children.Add(rightPanel);
+                    record.Margin = new Thickness(0, 0, 0, 15);
 
                     SearchResultsStackPanel.Children.Add(record);
                 }

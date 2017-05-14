@@ -61,13 +61,12 @@
                Margin="7,4,6,6" />
         <TextBlock Text="Ctrl-FV"
                    Grid.Column="1"
-                   Grid.Row="1"
                    Grid.ColumnSpan="3"
-                   VerticalAlignment="Top"
+                   VerticalAlignment="Bottom"
                    HorizontalAlignment="Left"
                    FontSize="16"
-                   FontFamily="/Hackathon;component/Fonts/#Revalia"
-                   Margin="40,0,0,0" />
+                   FontFamily="./Resources/#Revalia"
+                   Margin="40,0,0,7" Grid.RowSpan="2" />
         <Border BorderBrush="Black"
                 BorderThickness="1"
                 Grid.Column="1"
@@ -254,7 +253,7 @@
                        Grid.Column="1"
                        HorizontalAlignment="Left"
                        Text="Search"
-                       FontFamily="/Hackathon;component/Fonts/#Revalia"
+                       FontFamily="./Resources/#Revalia"
                        FontSize="15"
                        VerticalAlignment="Center"
                        Height="18"
@@ -267,7 +266,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Bottom"
                        Text=""
-                       FontFamily="/Hackathon;component/Fonts/#Revalia"
+                       FontFamily="./Resources/#Revalia"
                        FontSize="15"
                        Grid.ColumnSpan="4"
                        Grid.RowSpan="1" />

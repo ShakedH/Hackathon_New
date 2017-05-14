@@ -40,7 +40,6 @@ namespace Hackathon
         public Video(string name)
         {
             this.Name = name;
-            //this.Metadata = new VideoMetadata("Engineering", "Communication Dept.", "Communication 101", "Dr. Guy Shpitz");
         }
 
         public string GetSentence(string term, TimeInVid time)
