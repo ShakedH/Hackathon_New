@@ -83,6 +83,16 @@ namespace Hackathon.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] LieDetection {
+            get {
+                object obj = ResourceManager.GetObject("LieDetection", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] MainIndex {
             get {
                 object obj = ResourceManager.GetObject("MainIndex", resourceCulture);

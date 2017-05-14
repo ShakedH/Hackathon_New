@@ -124,6 +124,9 @@
   <data name="Communication" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Communication.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="LieDetection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LieDetection.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="MainIndex" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MainIndex.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

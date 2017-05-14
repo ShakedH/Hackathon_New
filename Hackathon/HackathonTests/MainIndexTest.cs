@@ -37,6 +37,13 @@ namespace HackathonTests
                 BinaryFormatter writer = new BinaryFormatter();
                 writer.Serialize(stream, mainIndex);
             }
+
+            using (FileStream stream = File.Open("CommunicationFull.bin", FileMode.Create))
+            {
+                BinaryFormatter writer = new BinaryFormatter();
+                writer.Serialize(stream, video);
+            }
+
             //Dictionary<string, List<VideoDetails>> dic = new Dictionary<string, List<VideoDetails>>();
             //List<string> keywords = new List<string>();
             //keywords.Add("communication");
@@ -64,7 +71,7 @@ namespace HackathonTests
             //    writer.Serialize(stream, dic);
             //}
         }
-        
+
         [TestMethod]
         public void UpdateIndexWithNewVideo()
         {
@@ -76,9 +83,9 @@ namespace HackathonTests
                 mainIndex = (Dictionary<string, List<VideoDetails>>)reader.Deserialize(stream);
             }
 
-            string fileName = "ClimateChange";
+            string fileName = "LieDetection";
             Video video = Video.LoadVideoFromResource(fileName);
-            video.Metadata = new VideoMetadata("Natural Science", "Geology", "Climate Changes", "Prof. Dan Shapira");
+            video.Metadata = new VideoMetadata("Humanities & Social Science", "Psychology", "Intro to Lie Detection", "Dr. Zehava Shemesh");
             List<string> keywords = new List<string>(video.GetMostFrequentStrings(5).Keys);
             VideoDetails vd = new VideoDetails(fileName, keywords);
             foreach (string term in video.Terms.Keys)
@@ -91,6 +98,12 @@ namespace HackathonTests
             {
                 BinaryFormatter writer = new BinaryFormatter();
                 writer.Serialize(stream, mainIndex);
+            }
+
+            using (FileStream stream = File.Open("LieDetectionFull.bin", FileMode.Create))
+            {
+                BinaryFormatter writer = new BinaryFormatter();
+                writer.Serialize(stream, video);
             }
         }
     }
