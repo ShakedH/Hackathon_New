@@ -64,7 +64,7 @@ namespace HackathonTests
             //    writer.Serialize(stream, dic);
             //}
         }
-
+        
         [TestMethod]
         public void UpdateIndexWithNewVideo()
         {

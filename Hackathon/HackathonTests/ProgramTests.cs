@@ -9,8 +9,8 @@ namespace HackathonTests
     public class ProgramTests
     {
 
-        string videoFile = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\ClimateChange.mp4";
-        string binaryDirectory = @"C:\Users\Dan gleyzer\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\";
+        string videoFile = @"C:\Users\adamz\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\ClimateChange.mp4";
+        string binaryDirectory = @"C:\Users\adamz\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\";
         string videoName = "ClimateChange";
         Stopwatch sw = new Stopwatch();
         Converter converter = new Converter(new APIGoogleClient());
