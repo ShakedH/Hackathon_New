@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Hackathon
 {
@@ -40,11 +41,6 @@ namespace Hackathon
 
         private void HandleLogic()
         {
-            // TODO Pseudo-code:
-            // 1. In a different class: pre-process all videos we have and load a MainIndex.dat file to project
-            // 2. MainIndex is a dictionary mapping: <term, VideoDetails> of all the videos
-            // 3. Deserialize MainIndex.dat to m_MainIndex
-
             byte[] index = Properties.Resources.MainIndex;
             using (Stream stream = new MemoryStream(index))
             {
@@ -112,6 +108,17 @@ namespace Hackathon
                     record.PreviewMouseDown += Record_PreviewMouseDown;
                     record.Children.Add(nameTB);
                     record.Children.Add(keywordsTB);
+                    record.Margin = new Thickness(0, 0, 0, 10);
+
+                    //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Images\" + vd.Name + ".jpg");
+                    //BitmapImage img = new BitmapImage(new Uri(path));
+                    //Image thumbnail = new Image();
+                    //thumbnail.Source = img;
+
+                    //StackPanel record = new StackPanel();
+                    //record.Orientation = Orientation.Horizontal;
+                    //record.Children.Add(thumbnail);
+                    //record.Children.Add(rightPanel);
 
                     SearchResultsStackPanel.Children.Add(record);
                 }
