@@ -1,10 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Hackathon;
+﻿using Hackathon;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
 namespace HackathonTests
@@ -12,8 +8,9 @@ namespace HackathonTests
     [TestClass()]
     public class ProgramTests
     {
+
         string videoFile = @"C:\Users\adamz\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\ClimateChange.mp4";
-        string binaryDirectory = @"C:\Users\adamz\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug";
+        string binaryDirectory = @"C:\Users\adamz\Source\Repos\Hackathon_New\Hackathon\HackathonTests\bin\Debug\";
         string videoName = "ClimateChange";
         Stopwatch sw = new Stopwatch();
         Converter converter = new Converter(new APIGoogleClient());
