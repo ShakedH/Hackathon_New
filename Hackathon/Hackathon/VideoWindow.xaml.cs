@@ -131,6 +131,7 @@ namespace Hackathon
 
         private void GetSearchResults()
         {
+            ResultText.Visibility = Visibility.Hidden;
             GenerateColumns();
             string term = searchBox.Text.ToLower();
             List<TimeInVid> allTimes = m_Video.SearchWord(term);
@@ -144,6 +145,9 @@ namespace Hackathon
             }
             txtSearchResults.Visibility = Visibility.Visible;
             txtSearchResults.ItemsSource = itemsSource;
+            string result = string.Format("Results ({0})", itemsSource.Count);
+            ResultText.Text = result;
+            ResultText.Visibility = Visibility.Visible;
         }
 
         private void GenerateColumns()

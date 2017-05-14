@@ -262,7 +262,7 @@
             <TextBlock x:Name="ResultText"
                        Grid.Column="1"
                        Grid.Row="2"
-                       Visibility="Visible"
+                       Visibility="Hidden"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Bottom"
                        Text=""
