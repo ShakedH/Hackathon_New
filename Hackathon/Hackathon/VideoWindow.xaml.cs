@@ -168,7 +168,7 @@ namespace Hackathon
 
         private void txtSearchResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if ((sender as DataGrid).SelectedItems.Count <= 0)
+            if ((sender as DataGrid).SelectedIndex < 0)
                 return;
             string[] selectedRow = (string[])((sender as DataGrid).SelectedItems[0]);
             string timeToJump = selectedRow[0];

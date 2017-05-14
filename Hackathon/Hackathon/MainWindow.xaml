@@ -65,9 +65,10 @@
                    Grid.RowSpan="2"
                    Grid.ColumnSpan="4"
                    VerticalAlignment="Bottom"
-                   HorizontalAlignment="Right"
+                   HorizontalAlignment="Left"
                    FontSize="32"
-                   FontFamily="./Resources/#Revalia" />
+                   FontFamily="Resources/#Revalia"
+                   Margin="22,0,0,0" />
         <TextBlock Text="ideos"
                    Grid.Column="11"
                    Grid.Row="4"
