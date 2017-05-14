@@ -18,7 +18,7 @@ namespace Hackathon
 
         private const int TimeIntervals = 15;
 
-        private const string OutputFilesFormat = "OutPut*.wav";
+        private const string OutputFilesFormat = "OutPut*.flac";
 
         private int m_FilesParsed;
 
@@ -82,9 +82,9 @@ namespace Hackathon
                         Sentences[term].Add(time.Start, sentence);
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    //Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                 }
                 finally
                 {
