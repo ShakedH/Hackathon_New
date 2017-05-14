@@ -65,7 +65,7 @@
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Left"
                    FontSize="32"
-                   FontFamily="Resources/#Revalia"
+                   FontFamily="./Resources/Revalia"
                    Margin="22,0,0,0" />
         <TextBlock Text="ideos"
                    Grid.Column="11"
@@ -74,7 +74,7 @@
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Bottom"
                    FontSize="20"
-                   FontFamily="/Hackathon;component/Fonts/#Revalia" />
+                   FontFamily="./Resources/#Revalia" />
         <TextBox Name="searchBox"
                  Grid.Column="5"
                  Grid.Row="7"

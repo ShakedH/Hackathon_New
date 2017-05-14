@@ -242,7 +242,7 @@
     <None Include="Resources\LieDetection.bin" />
     <None Include="Resources\MainIndex.bin" />
     <None Include="Resources\MainIndex.txt" />
-    <None Include="Resources\Revalia-Regular.ttf" />
+    <None Include="Resources\Revalia.ttf" />
     <None Include="Resources\stop_words.txt" />
     <Resource Include="Images\Logo.png" />
     <Resource Include="Images\Pause.png" />

@@ -103,9 +103,9 @@ namespace Hackathon.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] Revalia_Regular {
+        public static byte[] Revalia {
             get {
-                object obj = ResourceManager.GetObject("Revalia_Regular", resourceCulture);
+                object obj = ResourceManager.GetObject("Revalia", resourceCulture);
                 return ((byte[])(obj));
             }
         }
