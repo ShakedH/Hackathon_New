@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Hackathon
 {
@@ -26,11 +25,7 @@ namespace Hackathon
 
         public MainWindow()
         {
-            
-            // Set Font
-          
             InitializeComponent();
-            
             HandleDesign();
             HandleLogic();
         }

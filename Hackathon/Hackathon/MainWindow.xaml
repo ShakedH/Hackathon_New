@@ -7,8 +7,6 @@
         mc:Ignorable="d"
         Title="Ctrl-FV"
         WindowState="Maximized">
-    
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
@@ -59,7 +57,7 @@
                Grid.Row="4"
                Grid.ColumnSpan="2"
                Grid.RowSpan="2" />
-        <TextBlock  Text="Ctrl-FV"
+        <TextBlock Text="Ctrl-FV"
                    Grid.Column="7"
                    Grid.Row="4"
                    Grid.RowSpan="2"
@@ -76,7 +74,7 @@
                    Grid.ColumnSpan="2"
                    VerticalAlignment="Bottom"
                    FontSize="20"
-                   FontFamily="./Resources/#Revalia" />
+                   FontFamily="/Hackathon;component/Fonts/#Revalia" />
         <TextBox Name="searchBox"
                  Grid.Column="5"
                  Grid.Row="7"
