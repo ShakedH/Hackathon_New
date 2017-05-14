@@ -164,10 +164,13 @@ namespace Hackathon
 
         private void txtSearchResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string[] selectedRow = (string[])(((DataGrid)sender).SelectedItems[0]);
+            if ((sender as DataGrid).SelectedItems.Count <= 0)
+                return;
+            string[] selectedRow = (string[])((sender as DataGrid).SelectedItems[0]);
             string timeToJump = selectedRow[0];
             mediaPlayer.Position = TimeSpan.Parse(timeToJump);
             ShowPosition();
+            (sender as DataGrid).UnselectAll();
         }
     }
 }
