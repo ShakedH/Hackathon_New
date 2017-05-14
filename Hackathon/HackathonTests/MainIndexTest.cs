@@ -14,12 +14,6 @@ namespace HackathonTests
         public void TestMethod1()
         {
             Dictionary<string, List<VideoDetails>> mainIndex = new Dictionary<string, List<VideoDetails>>();
-            //byte[] index = Hackathon.Properties.Resources.MainIndex;
-            //using (Stream stream = new MemoryStream(index))
-            //{
-            //    BinaryFormatter reader = new BinaryFormatter();
-            //    mainIndex = (Dictionary<string, List<VideoDetails>>)reader.Deserialize(stream);
-            //}
             string fileName = "Communication";
             Video video = Video.LoadVideoFromResource(fileName);
             video.Metadata = new VideoMetadata("Engineering", "Information Sys. Engineering", "Communication 101", "Dr. Gal Shpitz");
@@ -42,33 +36,6 @@ namespace HackathonTests
                 BinaryFormatter writer = new BinaryFormatter();
                 writer.Serialize(stream, video);
             }
-
-            //Dictionary<string, List<VideoDetails>> dic = new Dictionary<string, List<VideoDetails>>();
-            //List<string> keywords = new List<string>();
-            //keywords.Add("communication");
-            //keywords.Add("network");
-            //keywords.Add("transport");
-            //keywords.Add("application");
-            //keywords.Add("internet");
-            //VideoDetails vd1 = new VideoDetails("Communication", keywords);
-            //List<VideoDetails> vdList = new List<VideoDetails>();
-            //vdList.Add(vd1);
-            //dic["communication"] = vdList;
-            //dic["network"] = vdList;
-            //dic["transport"] = vdList;
-            //dic["internet"] = vdList;
-            //dic["application"] = vdList;
-            //dic["layers"] = vdList;
-            //dic["layer"] = vdList;
-            //dic["link"] = vdList;
-            //dic["data"] = vdList;
-            //dic["address"] = vdList;
-
-            //using (FileStream stream = File.Open("MainIndex.bin", FileMode.Create))
-            //{
-            //    BinaryFormatter writer = new BinaryFormatter();
-            //    writer.Serialize(stream, dic);
-            //}
         }
 
         [TestMethod]
@@ -103,6 +70,45 @@ namespace HackathonTests
             {
                 BinaryFormatter writer = new BinaryFormatter();
                 writer.Serialize(stream, video);
+            }
+        }
+
+        [TestMethod]
+        public void AddEmptyStringToMainIndex()
+        {
+            Dictionary<string, List<VideoDetails>> mainIndex;
+            byte[] index = Hackathon.Properties.Resources.MainIndex;
+            using (Stream stream = new MemoryStream(index))
+            {
+                BinaryFormatter reader = new BinaryFormatter();
+                mainIndex = (Dictionary<string, List<VideoDetails>>)reader.Deserialize(stream);
+            }
+
+            mainIndex[""] = new List<VideoDetails>();
+
+            string fileName1 = "LieDetection";
+            Video video1 = Video.LoadVideoFromResource(fileName1);
+            List<string> keywords1 = new List<string>(video1.GetMostFrequentStrings(5).Keys);
+            VideoDetails vd1 = new VideoDetails(fileName1, keywords1);
+
+            string fileName2 = "Communication";
+            Video video2 = Video.LoadVideoFromResource(fileName2);
+            List<string> keywords2 = new List<string>(video2.GetMostFrequentStrings(5).Keys);
+            VideoDetails vd2 = new VideoDetails(fileName2, keywords2);
+
+            string fileName3 = "ClimateChange";
+            Video video3 = Video.LoadVideoFromResource(fileName3);
+            List<string> keywords3 = new List<string>(video3.GetMostFrequentStrings(5).Keys);
+            VideoDetails vd3 = new VideoDetails(fileName3, keywords3);
+
+            mainIndex[""].Add(vd1);
+            mainIndex[""].Add(vd2);
+            mainIndex[""].Add(vd3);
+
+            using (FileStream stream = File.Open("MainIndex.bin", FileMode.Create))
+            {
+                BinaryFormatter writer = new BinaryFormatter();
+                writer.Serialize(stream, mainIndex);
             }
         }
     }

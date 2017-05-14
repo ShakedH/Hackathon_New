@@ -217,9 +217,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Images\ClimateChange.JPG" />
-    <Resource Include="Images\Communication.JPG" />
-    <Resource Include="Images\LieDetection.JPG" />
     <Content Include="Resources\ffmpeg.exe" />
     <None Include="Resources\ClimateChange.bin" />
     <None Include="Resources\Communication.bin" />
